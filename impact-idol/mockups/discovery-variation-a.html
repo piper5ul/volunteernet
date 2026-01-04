@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discovery - Variation A (Card Grid Style)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+        }
+
+        .nav {
+            background: #0a0a0a;
+            border-bottom: 1px solid #1a1a1a;
+            padding: 0 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            height: 64px;
+            gap: 24px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 480px;
+        }
+
+        .search-input {
+            width: 100%;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 12px 16px 12px 44px;
+            color: #ffffff;
+            font-size: 14px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 24px;
+            padding: 60px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 32px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+        }
+
+        .hero-stat-item {
+            font-size: 14px;
+        }
+
+        .hero-stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+
+        .filter-chip {
+            padding: 10px 20px;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            color: #888;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .filter-chip:hover, .filter-chip.active {
+            background: #667eea;
+            border-color: #667eea;
+            color: #ffffff;
+        }
+
+        /* Opportunities Grid */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 8px;
+        }
+
+        .view-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: #1a1a1a;
+            border: none;
+            color: #888;
+            cursor: pointer;
+        }
+
+        .view-btn.active {
+            background: #667eea;
+            color: #ffffff;
+        }
+
+        .opportunities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .opp-card {
+            background: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .opp-card:hover {
+            border-color: #2a2a2a;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .opp-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+        }
+
+        .opp-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            padding: 6px 12px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .urgent {
+            background: rgba(239, 68, 68, 0.9);
+        }
+
+        .trending {
+            background: rgba(102, 126, 234, 0.9);
+        }
+
+        .opp-content {
+            padding: 24px;
+        }
+
+        .opp-org {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .org-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .org-name {
+            font-size: 13px;
+            color: #888;
+        }
+
+        .opp-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .opp-desc {
+            font-size: 14px;
+            color: #888;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .opp-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .tag {
+            padding: 6px 12px;
+            background: #1a1a1a;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .opp-meta {
+            display: flex;
+            gap: 20px;
+            padding-top: 16px;
+            border-top: 1px solid #1a1a1a;
+            font-size: 13px;
+            color: #888;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .opp-footer {
+            padding: 0 24px 24px;
+        }
+
+        .btn-join {
+            width: 100%;
+            padding: 14px;
+            background: #667eea;
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-join:hover {
+            background: #5568d3;
+        }
+
+        @media (max-width: 768px) {
+            .opportunities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 40px 24px;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-content">
+            <div class="logo">Impact Idol</div>
+            <div class="search-bar" style="position: relative;">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" placeholder="Search opportunities...">
+            </div>
+            <div style="flex: 1;"></div>
+            <div style="display: flex; gap: 12px;">
+                <button style="width: 40px; height: 40px; border-radius: 10px; background: #1a1a1a; border: none; color: #888; cursor: pointer;">🔔</button>
+                <button style="width: 40px; height: 40px; border-radius: 10px; background: #1a1a1a; border: none; color: #888; cursor: pointer;">💬</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero -->
+        <div class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Find Your Next Impact Opportunity</h1>
+                <p class="hero-subtitle">Join thousands of volunteers making a difference in their communities</p>
+                <div class="hero-stats">
+                    <div class="hero-stat-item">
+                        <div class="hero-stat-value">1,247</div>
+                        <div>Active Opportunities</div>
+                    </div>
+                    <div class="hero-stat-item">
+                        <div class="hero-stat-value">50K+</div>
+                        <div>Volunteers</div>
+                    </div>
+                    <div class="hero-stat-item">
+                        <div class="hero-stat-value">2.3M</div>
+                        <div>Hours Logged</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <div class="filter-chip active">All</div>
+            <div class="filter-chip">🌊 Environment</div>
+            <div class="filter-chip">📚 Education</div>
+            <div class="filter-chip">🍎 Food & Hunger</div>
+            <div class="filter-chip">🐾 Animals</div>
+            <div class="filter-chip">🏥 Healthcare</div>
+            <div class="filter-chip">👥 Community</div>
+            <div class="filter-chip">💻 Technology</div>
+        </div>
+
+        <!-- Section Header -->
+        <div class="section-header">
+            <h2 class="section-title">Trending Opportunities</h2>
+            <div class="view-toggle">
+                <button class="view-btn active">⊞</button>
+                <button class="view-btn">☰</button>
+            </div>
+        </div>
+
+        <!-- Opportunities Grid -->
+        <div class="opportunities-grid">
+            <!-- Card 1 -->
+            <div class="opp-card">
+                <div class="opp-image">
+                    <div class="opp-badge trending">🔥 Trending</div>
+                </div>
+                <div class="opp-content">
+                    <div class="opp-org">
+                        <div class="org-avatar"></div>
+                        <div class="org-name">Ocean Beach Conservation</div>
+                    </div>
+                    <h3 class="opp-title">Beach Cleanup & Ocean Conservation Day</h3>
+                    <p class="opp-desc">Join 200+ volunteers for the biggest beach cleanup of the year. Make a real difference while connecting with like-minded people.</p>
+                    <div class="opp-tags">
+                        <span class="tag">Environment</span>
+                        <span class="tag">Outdoors</span>
+                    </div>
+                    <div class="opp-meta">
+                        <div class="meta-item">📍 Ocean Beach, SF</div>
+                        <div class="meta-item">📅 Tomorrow</div>
+                        <div class="meta-item">👥 156/200</div>
+                    </div>
+                </div>
+                <div class="opp-footer">
+                    <button class="btn-join">Join Event →</button>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="opp-card">
+                <div class="opp-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    <div class="opp-badge urgent">⚡ Urgent</div>
+                </div>
+                <div class="opp-content">
+                    <div class="opp-org">
+                        <div class="org-avatar" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                        <div class="org-name">SF Food Rescue</div>
+                    </div>
+                    <h3 class="opp-title">Food Bank Distribution Drive</h3>
+                    <p class="opp-desc">Help distribute food to 500+ families in need. We urgently need 15 more volunteers for tomorrow's distribution.</p>
+                    <div class="opp-tags">
+                        <span class="tag">Food & Hunger</span>
+                        <span class="tag">Community</span>
+                    </div>
+                    <div class="opp-meta">
+                        <div class="meta-item">📍 Downtown SF</div>
+                        <div class="meta-item">📅 Tomorrow</div>
+                        <div class="meta-item">👥 35/50</div>
+                    </div>
+                </div>
+                <div class="opp-footer">
+                    <button class="btn-join">Join Event →</button>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="opp-card">
+                <div class="opp-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                    <div class="opp-badge">🌱 New</div>
+                </div>
+                <div class="opp-content">
+                    <div class="opp-org">
+                        <div class="org-avatar" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
+                        <div class="org-name">Green Earth Foundation</div>
+                    </div>
+                    <h3 class="opp-title">Tree Planting Initiative</h3>
+                    <p class="opp-desc">Plant 500 trees in Golden Gate Park this weekend. All skill levels welcome. Tools and training provided.</p>
+                    <div class="opp-tags">
+                        <span class="tag">Environment</span>
+                        <span class="tag">Outdoors</span>
+                    </div>
+                    <div class="opp-meta">
+                        <div class="meta-item">📍 Golden Gate Park</div>
+                        <div class="meta-item">📅 This Weekend</div>
+                        <div class="meta-item">👥 89/150</div>
+                    </div>
+                </div>
+                <div class="opp-footer">
+                    <button class="btn-join">Join Event →</button>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="opp-card">
+                <div class="opp-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                </div>
+                <div class="opp-content">
+                    <div class="opp-org">
+                        <div class="org-avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                        <div class="org-name">Tech4Good</div>
+                    </div>
+                    <h3 class="opp-title">Coding Workshop for Youth</h3>
+                    <p class="opp-desc">Teach coding basics to underserved high school students. Remote opportunity, flexible hours. No teaching experience required.</p>
+                    <div class="opp-tags">
+                        <span class="tag">Education</span>
+                        <span class="tag">Technology</span>
+                        <span class="tag">Remote</span>
+                    </div>
+                    <div class="opp-meta">
+                        <div class="meta-item">📍 Remote</div>
+                        <div class="meta-item">📅 Ongoing</div>
+                        <div class="meta-item">👥 Flexible</div>
+                    </div>
+                </div>
+                <div class="opp-footer">
+                    <button class="btn-join">Join Event →</button>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="opp-card">
+                <div class="opp-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                </div>
+                <div class="opp-content">
+                    <div class="opp-org">
+                        <div class="org-avatar" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+                        <div class="org-name">Bay Area Animal Rescue</div>
+                    </div>
+                    <h3 class="opp-title">Animal Shelter Care & Adoption Event</h3>
+                    <p class="opp-desc">Help care for rescue animals and assist with our monthly adoption fair. Perfect for animal lovers!</p>
+                    <div class="opp-tags">
+                        <span class="tag">Animals</span>
+                        <span class="tag">Community</span>
+                    </div>
+                    <div class="opp-meta">
+                        <div class="meta-item">📍 Mission District</div>
+                        <div class="meta-item">📅 Next Week</div>
+                        <div class="meta-item">👥 12/25</div>
+                    </div>
+                </div>
+                <div class="opp-footer">
+                    <button class="btn-join">Join Event →</button>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="opp-card">
+                <div class="opp-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <div class="opp-badge">✨ Featured</div>
+                </div>
+                <div class="opp-content">
+                    <div class="opp-org">
+                        <div class="org-avatar"></div>
+                        <div class="org-name">SF Youth Mentorship</div>
+                    </div>
+                    <h3 class="opp-title">Youth Mentorship Program</h3>
+                    <p class="opp-desc">Become a mentor to a high school student. Commit 2 hours per week for meaningful one-on-one impact.</p>
+                    <div class="opp-tags">
+                        <span class="tag">Education</span>
+                        <span class="tag">Youth</span>
+                        <span class="tag">Long-term</span>
+                    </div>
+                    <div class="opp-meta">
+                        <div class="meta-item">📍 Various Locations</div>
+                        <div class="meta-item">📅 Ongoing</div>
+                        <div class="meta-item">👥 20 spots left</div>
+                    </div>
+                </div>
+                <div class="opp-footer">
+                    <button class="btn-join">Join Event →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

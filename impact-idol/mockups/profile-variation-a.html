@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Variation A (LinkedIn/Peerlist Style)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f3f2ef;
+            color: #000000de;
+        }
+
+        .nav {
+            background: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 8px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1128px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .back-btn {
+            padding: 8px 16px;
+            background: none;
+            border: 1px solid #e0e0e0;
+            border-radius: 16px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1128px;
+            margin: 24px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 24px;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        /* Profile Header Card */
+        .profile-header {
+            position: relative;
+        }
+
+        .cover-photo {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .profile-info {
+            padding: 0 24px 24px;
+            position: relative;
+        }
+
+        .profile-avatar {
+            width: 152px;
+            height: 152px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border: 4px solid #ffffff;
+            position: absolute;
+            top: -76px;
+        }
+
+        .profile-actions {
+            padding-top: 12px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .btn {
+            padding: 10px 24px;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #0a66c2;
+            color: #ffffff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #004182;
+        }
+
+        .btn-secondary {
+            background: #ffffff;
+            color: #0a66c2;
+            border: 1px solid #0a66c2;
+        }
+
+        .btn-secondary:hover {
+            background: #ebf5ff;
+        }
+
+        .profile-details {
+            margin-top: 80px;
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .profile-headline {
+            font-size: 16px;
+            color: #00000099;
+            margin-bottom: 8px;
+        }
+
+        .profile-meta {
+            font-size: 14px;
+            color: #00000099;
+            margin-bottom: 16px;
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .stat {
+            flex: 1;
+            padding: 8px 0;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0a66c2;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #00000099;
+        }
+
+        /* About Section */
+        .section-header {
+            padding: 16px 24px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .section-content {
+            padding: 24px;
+        }
+
+        .about-text {
+            line-height: 1.6;
+            color: #000000de;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .skill-item {
+            padding: 16px;
+            background: #f3f2ef;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .skill-name {
+            font-weight: 600;
+        }
+
+        .endorsements {
+            font-size: 12px;
+            color: #0a66c2;
+            font-weight: 600;
+        }
+
+        /* Experience Timeline */
+        .timeline-item {
+            display: flex;
+            gap: 16px;
+            padding: 24px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            flex-shrink: 0;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .timeline-org {
+            font-size: 14px;
+            color: #00000099;
+            margin-bottom: 4px;
+        }
+
+        .timeline-date {
+            font-size: 12px;
+            color: #00000099;
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #000000de;
+        }
+
+        .hours-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #e7f3e7;
+            color: #057642;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        /* Sidebar */
+        .sidebar-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .sidebar-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .badge-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: #f3f2ef;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .badge-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .badge-info {
+            flex: 1;
+        }
+
+        .badge-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .badge-date {
+            font-size: 12px;
+            color: #00000099;
+        }
+
+        .cause-tag {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #e7f3e7;
+            border-radius: 16px;
+            font-size: 12px;
+            margin: 4px;
+            color: #057642;
+            font-weight: 600;
+        }
+
+        @media (max-width: 1000px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-content">
+            <button class="back-btn">← Back</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main>
+            <!-- Profile Header -->
+            <div class="card profile-header">
+                <div class="cover-photo"></div>
+                <div class="profile-info">
+                    <div class="profile-avatar"></div>
+                    <div class="profile-actions">
+                        <button class="btn btn-secondary">Message</button>
+                        <button class="btn btn-primary">Connect</button>
+                    </div>
+                    <div class="profile-details">
+                        <h1 class="profile-name">Sarah Chen</h1>
+                        <p class="profile-headline">Community Leader & Environmental Advocate | 500+ Hours Volunteered</p>
+                        <p class="profile-meta">San Francisco Bay Area · 234 connections</p>
+                        <div class="profile-stats">
+                            <div class="stat">
+                                <div class="stat-value">342</div>
+                                <div class="stat-label">Hours This Year</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">28</div>
+                                <div class="stat-label">Events Completed</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">4.9</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">15</div>
+                                <div class="stat-label">Badges</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About -->
+            <div class="card">
+                <div class="section-header">
+                    <h2 class="section-title">About</h2>
+                </div>
+                <div class="section-content">
+                    <p class="about-text">
+                        Passionate community organizer with 5+ years of experience in environmental conservation and social impact initiatives. Dedicated to building stronger communities through collaborative volunteer efforts and sustainable practices.
+                        <br><br>
+                        Specializing in beach cleanups, tree planting initiatives, and youth education programs. Always looking to connect with like-minded individuals who want to make a real difference.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="card">
+                <div class="section-header">
+                    <h2 class="section-title">Skills & Endorsements</h2>
+                </div>
+                <div class="section-content">
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-name">Event Coordination</div>
+                            <div class="endorsements">12 endorsements</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Team Leadership</div>
+                            <div class="endorsements">18 endorsements</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Environmental Science</div>
+                            <div class="endorsements">8 endorsements</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Community Outreach</div>
+                            <div class="endorsements">15 endorsements</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Volunteer Experience -->
+            <div class="card">
+                <div class="section-header">
+                    <h2 class="section-title">Volunteer Experience</h2>
+                </div>
+                <div class="section-content">
+                    <div class="timeline-item">
+                        <div class="timeline-icon"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Squad Leader - Bay Area Heroes</h3>
+                            <p class="timeline-org">Bay Area Heroes Squad</p>
+                            <p class="timeline-date">Jan 2023 - Present · 1 yr 11 mos</p>
+                            <p class="timeline-desc">
+                                Leading a team of 50+ volunteers in monthly community service projects. Organized 24 events with 1000+ total volunteer hours contributed.
+                            </p>
+                            <span class="hours-badge">124 hours contributed</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Environmental Coordinator</h3>
+                            <p class="timeline-org">Ocean Beach Conservation Society</p>
+                            <p class="timeline-date">Mar 2022 - Dec 2023 · 1 yr 10 mos</p>
+                            <p class="timeline-desc">
+                                Coordinated weekly beach cleanup events, recruiting and managing 30+ volunteers per session. Removed over 5,000 lbs of ocean debris.
+                            </p>
+                            <span class="hours-badge">218 hours contributed</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Volunteer Mentor</h3>
+                            <p class="timeline-org">SF Youth Education Initiative</p>
+                            <p class="timeline-date">Sep 2021 - Feb 2022 · 6 mos</p>
+                            <p class="timeline-desc">
+                                Mentored high school students in environmental science and community engagement. Developed curriculum for sustainability education.
+                            </p>
+                            <span class="hours-badge">86 hours contributed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside>
+            <!-- Badges -->
+            <div class="sidebar-card">
+                <h3 class="sidebar-title">Recent Badges</h3>
+                <div class="badge-item">
+                    <div class="badge-icon">🏆</div>
+                    <div class="badge-info">
+                        <div class="badge-name">100 Hour Club</div>
+                        <div class="badge-date">Earned Dec 2024</div>
+                    </div>
+                </div>
+                <div class="badge-item">
+                    <div class="badge-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">🌊</div>
+                    <div class="badge-info">
+                        <div class="badge-name">Ocean Guardian</div>
+                        <div class="badge-date">Earned Nov 2024</div>
+                    </div>
+                </div>
+                <div class="badge-item">
+                    <div class="badge-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">⭐</div>
+                    <div class="badge-info">
+                        <div class="badge-name">Squad Leader</div>
+                        <div class="badge-date">Earned Oct 2024</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Causes -->
+            <div class="sidebar-card">
+                <h3 class="sidebar-title">Causes I Care About</h3>
+                <div>
+                    <span class="cause-tag">🌊 Ocean Conservation</span>
+                    <span class="cause-tag">🌳 Environment</span>
+                    <span class="cause-tag">📚 Education</span>
+                    <span class="cause-tag">🏘️ Community</span>
+                    <span class="cause-tag">♻️ Sustainability</span>
+                </div>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="sidebar-card">
+                <h3 class="sidebar-title">Impact Summary</h3>
+                <div style="line-height: 2;">
+                    <div style="font-size: 14px; color: #00000099;">
+                        <strong>Total Hours:</strong> 502 hours<br>
+                        <strong>Events:</strong> 48 events<br>
+                        <strong>Organizations:</strong> 12 orgs<br>
+                        <strong>Impact Score:</strong> Top 5%
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</body>
+</html>

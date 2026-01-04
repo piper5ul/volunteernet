@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Idol - UI Mockup Showcase</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 60px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 32px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .card-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .card-label {
+            flex: 1;
+        }
+
+        .card-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .card-type {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .card-desc {
+            font-size: 15px;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .card-features {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .card-features li {
+            padding: 8px 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .card-features li:before {
+            content: "✓ ";
+            margin-right: 8px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: #ffffff;
+            color: #667eea;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: #f0f0f0;
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Impact Idol UI Mockups</h1>
+        <p class="subtitle">Modern interface design variations for the volunteer platform</p>
+
+        <!-- Dashboard Section -->
+        <div class="section">
+            <h2 class="section-title">Dashboard Variations</h2>
+            <div class="cards-grid">
+                <div class="card" onclick="window.location.href='dashboard-variation-a.html'">
+                    <div class="card-header">
+                        <div class="card-icon">🎨</div>
+                        <div class="card-label">
+                            <div class="card-name">Variation A</div>
+                            <div class="card-type">Peerlist / Dark Mode</div>
+                        </div>
+                    </div>
+                    <p class="card-desc">
+                        Professional dark theme with sidebar navigation, clean cards, and prominent stats. Inspired by Peerlist.io.
+                    </p>
+                    <ul class="card-features">
+                        <li>Dark mode interface</li>
+                        <li>Three-column layout</li>
+                        <li>Social feed style</li>
+                        <li>Stats sidebar</li>
+                    </ul>
+                    <a href="dashboard-variation-a.html" class="btn">View Dashboard A →</a>
+                </div>
+
+                <div class="card" onclick="window.location.href='dashboard-variation-b.html'">
+                    <div class="card-header">
+                        <div class="card-icon">📸</div>
+                        <div class="card-label">
+                            <div class="card-name">Variation B</div>
+                            <div class="card-type">Instagram / Social</div>
+                        </div>
+                    </div>
+                    <p class="card-desc">
+                        Visual-first social feed with stories, photo posts, and engagement metrics. Instagram-inspired design.
+                    </p>
+                    <ul class="card-features">
+                        <li>Stories carousel</li>
+                        <li>Photo-centric posts</li>
+                        <li>Social engagement</li>
+                        <li>Light color scheme</li>
+                    </ul>
+                    <a href="dashboard-variation-b.html" class="btn">View Dashboard B →</a>
+                </div>
+
+                <div class="card" onclick="window.location.href='dashboard-variation-c.html'">
+                    <div class="card-header">
+                        <div class="card-icon">✨</div>
+                        <div class="card-label">
+                            <div class="card-name">Variation C</div>
+                            <div class="card-type">Bento / Glassmorphism</div>
+                        </div>
+                    </div>
+                    <p class="card-desc">
+                        Modern bento grid layout with glassmorphism effects, gradient backgrounds, and dynamic widgets.
+                    </p>
+                    <ul class="card-features">
+                        <li>Bento grid layout</li>
+                        <li>Glass morphism cards</li>
+                        <li>Gradient background</li>
+                        <li>Widget-based design</li>
+                    </ul>
+                    <a href="dashboard-variation-c.html" class="btn">View Dashboard C →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Section -->
+        <div class="section">
+            <h2 class="section-title">Profile Variations</h2>
+            <div class="cards-grid">
+                <div class="card" onclick="window.location.href='profile-variation-a.html'">
+                    <div class="card-header">
+                        <div class="card-icon">💼</div>
+                        <div class="card-label">
+                            <div class="card-name">Variation A</div>
+                            <div class="card-type">LinkedIn / Professional</div>
+                        </div>
+                    </div>
+                    <p class="card-desc">
+                        Professional profile layout with timeline-style experience, skills endorsements, and achievement badges.
+                    </p>
+                    <ul class="card-features">
+                        <li>Cover photo header</li>
+                        <li>Experience timeline</li>
+                        <li>Skills & endorsements</li>
+                        <li>Sidebar widgets</li>
+                    </ul>
+                    <a href="profile-variation-a.html" class="btn">View Profile A →</a>
+                </div>
+
+                <div class="card" onclick="window.location.href='profile-variation-b.html'">
+                    <div class="card-header">
+                        <div class="card-icon">🎬</div>
+                        <div class="card-label">
+                            <div class="card-name">Variation B</div>
+                            <div class="card-type">Visual Grid / Gallery</div>
+                        </div>
+                    </div>
+                    <p class="card-desc">
+                        Photo gallery-style profile with tabbed content and visual-first volunteer activity showcase.
+                    </p>
+                    <ul class="card-features">
+                        <li>Photo grid layout</li>
+                        <li>Tabbed navigation</li>
+                        <li>Visual storytelling</li>
+                        <li>Event highlights</li>
+                    </ul>
+                    <a href="profile-variation-b.html" class="btn">View Profile B →</a>
+                </div>
+
+                <div class="card" onclick="window.location.href='profile-variation-c.html'">
+                    <div class="card-header">
+                        <div class="card-icon">🎯</div>
+                        <div class="card-label">
+                            <div class="card-name">Variation C</div>
+                            <div class="card-type">Bento Dashboard</div>
+                        </div>
+                    </div>
+                    <p class="card-desc">
+                        Unique bento grid profile with modular sections, stats visualization, and modern glassmorphism.
+                    </p>
+                    <ul class="card-features">
+                        <li>Modular bento grid</li>
+                        <li>Glass effect cards</li>
+                        <li>Impact scoring</li>
+                        <li>Mini photo gallery</li>
+                    </ul>
+                    <a href="profile-variation-c.html" class="btn">View Profile C →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Discovery Section -->
+        <div class="section">
+            <h2 class="section-title">Discovery Variations</h2>
+            <div class="cards-grid">
+                <div class="card" onclick="window.location.href='discovery-variation-a.html'">
+                    <div class="card-header">
+                        <div class="card-icon">🔍</div>
+                        <div class="card-label">
+                            <div class="card-name">Variation A</div>
+                            <div class="card-type">Card Grid / Dark</div>
+                        </div>
+                    </div>
+                    <p class="card-desc">
+                        Clean card-based discovery with hero section, category filters, and detailed opportunity cards.
+                    </p>
+                    <ul class="card-features">
+                        <li>Hero banner</li>
+                        <li>Filter chips</li>
+                        <li>Detailed cards</li>
+                        <li>Dark theme</li>
+                    </ul>
+                    <a href="discovery-variation-a.html" class="btn">View Discovery A →</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">🗺️</div>
+                        <div class="card-label">
+                            <div class="card-name">Variation B</div>
+                            <div class="card-type">Map View (Coming)</div>
+                        </div>
+                    </div>
+                    <p class="card-desc">
+                        Interactive map-based discovery with location pins, radius search, and side panel previews.
+                    </p>
+                    <ul class="card-features">
+                        <li>Map interface</li>
+                        <li>Location-based</li>
+                        <li>Side panel cards</li>
+                        <li>Radius filtering</li>
+                    </ul>
+                    <button class="btn" disabled style="opacity: 0.5; cursor: not-allowed;">Coming Soon</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">📱</div>
+                        <div class="card-label">
+                            <div class="card-name">Variation C</div>
+                            <div class="card-type">Swipe Cards (Coming)</div>
+                        </div>
+                    </div>
+                    <p class="card-desc">
+                        Tinder-style swipeable cards for quick discovery with minimal UI and gesture-based interactions.
+                    </p>
+                    <ul class="card-features">
+                        <li>Swipe interface</li>
+                        <li>Quick decisions</li>
+                        <li>Minimal UI</li>
+                        <li>Mobile-first</li>
+                    </ul>
+                    <button class="btn" disabled style="opacity: 0.5; cursor: not-allowed;">Coming Soon</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

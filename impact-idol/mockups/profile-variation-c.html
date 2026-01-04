@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Variation C (Bento Grid Style)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #ffffff;
+        }
+
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+        }
+
+        .back-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .username-nav {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* Bento Grid Container */
+        .bento-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: 160px;
+            gap: 20px;
+        }
+
+        /* Glass Card Base */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 28px;
+            transition: all 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Profile Card */
+        .profile-main {
+            grid-column: span 5;
+            grid-row: span 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .profile-avatar-bento {
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            margin-bottom: 24px;
+        }
+
+        .profile-name-large {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .profile-handle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 16px;
+        }
+
+        .profile-bio-text {
+            font-size: 15px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 24px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-glass {
+            flex: 1;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .btn-primary-glass {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+        }
+
+        .btn-secondary-glass {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Stats Cards */
+        .stat-large {
+            grid-column: span 2;
+            grid-row: span 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .stat-icon-large {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .stat-value-large {
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 4px;
+        }
+
+        .stat-label-large {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 600;
+        }
+
+        .stat-trend {
+            font-size: 12px;
+            color: #4ade80;
+            margin-top: 8px;
+        }
+
+        /* Connection Stats */
+        .connections {
+            grid-column: span 3;
+            grid-row: span 1;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .connection-item {
+            text-align: center;
+        }
+
+        .connection-value {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .connection-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Skills */
+        .skills-card {
+            grid-column: span 4;
+            grid-row: span 2;
+        }
+
+        .card-title-small {
+            font-size: 14px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            padding: 10px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            font-size: 13px;
+            margin: 4px;
+            font-weight: 600;
+        }
+
+        /* Recent Activity */
+        .activity-card {
+            grid-column: span 5;
+            grid-row: span 3;
+        }
+
+        .activity-list {
+            margin-top: 20px;
+        }
+
+        .activity-item-bento {
+            display: flex;
+            gap: 12px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .activity-item-bento:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon-bento {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            flex-shrink: 0;
+        }
+
+        .activity-text-bento {
+            flex: 1;
+        }
+
+        .activity-title-bento {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .activity-meta-bento {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Badges Showcase */
+        .badges-showcase {
+            grid-column: span 4;
+            grid-row: span 2;
+        }
+
+        .badges-grid-mini {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .badge-mini {
+            aspect-ratio: 1;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .badge-mini:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.05);
+        }
+
+        /* Causes */
+        .causes-card {
+            grid-column: span 3;
+            grid-row: span 2;
+        }
+
+        .cause-item {
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Photo Grid Mini */
+        .photos-mini {
+            grid-column: span 7;
+            grid-row: span 2;
+        }
+
+        .mini-photo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .mini-photo {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .mini-photo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Impact Score */
+        .impact-score {
+            grid-column: span 2;
+            grid-row: span 1;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .score-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: conic-gradient(#667eea 0% 90%, rgba(255,255,255,0.1) 90% 100%);
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .score-inner {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(30, 30, 30, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 1200px) {
+            .bento-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+
+            .profile-main, .activity-card, .photos-mini {
+                grid-column: span 6 !important;
+            }
+
+            .stat-large {
+                grid-column: span 3 !important;
+            }
+
+            .connections, .skills-card, .badges-showcase, .causes-card {
+                grid-column: span 6 !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: auto;
+            }
+
+            .profile-main, .stat-large, .connections, .skills-card,
+            .activity-card, .badges-showcase, .causes-card, .photos-mini, .impact-score {
+                grid-column: span 1 !important;
+                grid-row: span 1 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <button class="back-btn">←</button>
+        <div class="username-nav">@sarah_chen</div>
+    </div>
+
+    <div class="bento-grid">
+        <!-- Main Profile Card -->
+        <div class="glass-card profile-main">
+            <div>
+                <div class="profile-avatar-bento"></div>
+                <h1 class="profile-name-large">Sarah Chen</h1>
+                <div class="profile-handle">@sarah_chen · San Francisco, CA</div>
+                <p class="profile-bio-text">
+                    Community Leader & Environmental Advocate 🌊 Squad Leader @ Bay Area Heroes. Passionate about ocean conservation and sustainable living.
+                </p>
+            </div>
+            <div class="action-buttons">
+                <button class="btn-glass btn-primary-glass">Connect</button>
+                <button class="btn-glass btn-secondary-glass">Message</button>
+                <button class="btn-glass btn-secondary-glass">•••</button>
+            </div>
+        </div>
+
+        <!-- Hours Stat -->
+        <div class="glass-card stat-large">
+            <div>
+                <div class="stat-icon-large">⏱️</div>
+                <div class="stat-value-large">502</div>
+                <div class="stat-label-large">Total Hours</div>
+                <div class="stat-trend">↗ +127 this month</div>
+            </div>
+        </div>
+
+        <!-- Events Stat -->
+        <div class="glass-card stat-large">
+            <div>
+                <div class="stat-icon-large">🎯</div>
+                <div class="stat-value-large">48</div>
+                <div class="stat-label-large">Events</div>
+                <div class="stat-trend">↗ +12 this quarter</div>
+            </div>
+        </div>
+
+        <!-- Rating Stat -->
+        <div class="glass-card stat-large">
+            <div>
+                <div class="stat-icon-large">⭐</div>
+                <div class="stat-value-large">4.9</div>
+                <div class="stat-label-large">Rating</div>
+                <div class="stat-trend">Perfect score!</div>
+            </div>
+        </div>
+
+        <!-- Connections -->
+        <div class="glass-card connections">
+            <div class="connection-item">
+                <div class="connection-value">234</div>
+                <div class="connection-label">Following</div>
+            </div>
+            <div style="width: 1px; height: 40px; background: rgba(255,255,255,0.1);"></div>
+            <div class="connection-item">
+                <div class="connection-value">567</div>
+                <div class="connection-label">Followers</div>
+            </div>
+            <div style="width: 1px; height: 40px; background: rgba(255,255,255,0.1);"></div>
+            <div class="connection-item">
+                <div class="connection-value">12</div>
+                <div class="connection-label">Squads</div>
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="glass-card skills-card">
+            <div class="card-title-small">Top Skills</div>
+            <div>
+                <span class="skill-tag">Event Coordination</span>
+                <span class="skill-tag">Team Leadership</span>
+                <span class="skill-tag">Environmental Science</span>
+                <span class="skill-tag">Community Outreach</span>
+                <span class="skill-tag">Public Speaking</span>
+                <span class="skill-tag">Project Management</span>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="glass-card activity-card">
+            <div class="card-title-small">Recent Activity</div>
+            <div class="activity-list">
+                <div class="activity-item-bento">
+                    <div class="activity-icon-bento"></div>
+                    <div class="activity-text-bento">
+                        <div class="activity-title-bento">Ocean Beach Cleanup completed</div>
+                        <div class="activity-meta-bento">6 hours · 2 days ago</div>
+                    </div>
+                </div>
+                <div class="activity-item-bento">
+                    <div class="activity-icon-bento" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                    <div class="activity-text-bento">
+                        <div class="activity-title-bento">Earned "Ocean Guardian" badge</div>
+                        <div class="activity-meta-bento">4 days ago</div>
+                    </div>
+                </div>
+                <div class="activity-item-bento">
+                    <div class="activity-icon-bento" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
+                    <div class="activity-text-bento">
+                        <div class="activity-title-bento">Tree Planting Initiative</div>
+                        <div class="activity-meta-bento">5 hours · 1 week ago</div>
+                    </div>
+                </div>
+                <div class="activity-item-bento">
+                    <div class="activity-icon-bento" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                    <div class="activity-text-bento">
+                        <div class="activity-title-bento">Food Bank Distribution</div>
+                        <div class="activity-meta-bento">4 hours · 2 weeks ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Impact Score -->
+        <div class="glass-card impact-score">
+            <div class="score-circle">
+                <div class="score-inner">9.2</div>
+            </div>
+            <div class="stat-label-large">Impact Score</div>
+        </div>
+
+        <!-- Badges -->
+        <div class="glass-card badges-showcase">
+            <div class="card-title-small">Achievement Badges</div>
+            <div class="badges-grid-mini">
+                <div class="badge-mini">🏆</div>
+                <div class="badge-mini">🌊</div>
+                <div class="badge-mini">⭐</div>
+                <div class="badge-mini">🌳</div>
+                <div class="badge-mini">👑</div>
+                <div class="badge-mini">💎</div>
+            </div>
+        </div>
+
+        <!-- Causes -->
+        <div class="glass-card causes-card">
+            <div class="card-title-small">Passionate About</div>
+            <div class="cause-item">🌊 Ocean Conservation</div>
+            <div class="cause-item">🌳 Environment</div>
+            <div class="cause-item">📚 Education</div>
+        </div>
+
+        <!-- Recent Photos -->
+        <div class="glass-card photos-mini">
+            <div class="card-title-small">Recent Moments</div>
+            <div class="mini-photo-grid">
+                <div class="mini-photo"></div>
+                <div class="mini-photo" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                <div class="mini-photo" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+                <div class="mini-photo" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
+                <div class="mini-photo" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                <div class="mini-photo" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                <div class="mini-photo" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                <div class="mini-photo" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

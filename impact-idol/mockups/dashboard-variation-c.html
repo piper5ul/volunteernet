@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Idol - Dashboard (Variation C: Modern Bento Style)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Navigation */
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-item {
+            padding: 10px 20px;
+            border-radius: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .icon-bubble {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 18px;
+        }
+
+        .icon-bubble:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .avatar-bubble {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            cursor: pointer;
+        }
+
+        /* Main Grid */
+        .dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 28px;
+            color: #ffffff;
+            transition: all 0.3s;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Stats Cards */
+        .stats-row {
+            grid-column: span 12;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 24px;
+            color: #ffffff;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 4px;
+            letter-spacing: -1px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.8;
+            font-weight: 500;
+        }
+
+        .stat-change {
+            font-size: 12px;
+            margin-top: 8px;
+            opacity: 0.7;
+        }
+
+        /* Featured Event */
+        .featured {
+            grid-column: span 8;
+            background: rgba(255, 255, 255, 0.95);
+            color: #1a1a1a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 0.1;
+            border-radius: 24px;
+        }
+
+        .featured-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .featured-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #667eea;
+            color: #ffffff;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .featured-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .featured-desc {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .featured-meta {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .btn-join {
+            background: #667eea;
+            color: #ffffff;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-join:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Activity Feed */
+        .activity {
+            grid-column: span 4;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .activity-item {
+            display: flex;
+            gap: 12px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            flex-shrink: 0;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-text {
+            font-size: 14px;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .activity-name {
+            font-weight: 600;
+        }
+
+        .activity-time {
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        /* Opportunities Grid */
+        .opportunities {
+            grid-column: span 8;
+        }
+
+        .opportunities-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .opportunity-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .opportunity-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(4px);
+        }
+
+        .opp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .opp-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .opp-badge {
+            padding: 4px 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .opp-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .opp-org {
+            font-size: 13px;
+            opacity: 0.7;
+            margin-bottom: 12px;
+        }
+
+        .opp-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        /* Squad Leaderboard */
+        .leaderboard {
+            grid-column: span 4;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            transition: all 0.3s;
+        }
+
+        .leaderboard-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .rank {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .rank.gold {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+        }
+
+        .rank.silver {
+            background: linear-gradient(135deg, #C0C0C0, #A8A8A8);
+        }
+
+        .rank.bronze {
+            background: linear-gradient(135deg, #CD7F32, #A0522D);
+        }
+
+        .leader-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .leader-info {
+            flex: 1;
+        }
+
+        .leader-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .leader-hours {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        .leader-score {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 1200px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-row, .featured, .activity, .opportunities, .leaderboard {
+                grid-column: span 1 !important;
+            }
+
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .opportunities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="logo">Impact Idol</div>
+        <div class="nav-menu">
+            <div class="nav-item active">Dashboard</div>
+            <div class="nav-item">Discover</div>
+            <div class="nav-item">My Events</div>
+            <div class="nav-item">Squads</div>
+        </div>
+        <div class="nav-actions">
+            <div class="icon-bubble">🔍</div>
+            <div class="icon-bubble">🔔</div>
+            <div class="icon-bubble">💬</div>
+            <div class="avatar-bubble"></div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Grid -->
+    <div class="dashboard">
+        <!-- Stats Row -->
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-icon">⏱️</div>
+                <div class="stat-value">127</div>
+                <div class="stat-label">Hours This Month</div>
+                <div class="stat-change">↗ 23% from last month</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-value">12</div>
+                <div class="stat-label">Events Completed</div>
+                <div class="stat-change">↗ 4 more than last month</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-value">4.9</div>
+                <div class="stat-label">Average Rating</div>
+                <div class="stat-change">Perfect score! 🎉</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-value">28</div>
+                <div class="stat-label">Badges Earned</div>
+                <div class="stat-change">↗ 3 new this month</div>
+            </div>
+        </div>
+
+        <!-- Featured Event -->
+        <div class="glass-card featured">
+            <div class="featured-bg"></div>
+            <div class="featured-content">
+                <div class="featured-tag">🔥 Trending Now</div>
+                <h2 class="featured-title">Beach Cleanup & Ocean Conservation Day</h2>
+                <p class="featured-desc">
+                    Join 200+ volunteers for the biggest beach cleanup of the year. Make a real difference while connecting with like-minded people who care about our oceans.
+                </p>
+                <div class="featured-meta">
+                    <div class="meta-item">📍 Ocean Beach, SF</div>
+                    <div class="meta-item">📅 Tomorrow, 9:00 AM</div>
+                    <div class="meta-item">👥 156/200 spots filled</div>
+                </div>
+                <button class="btn-join">Join Event →</button>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="glass-card activity">
+            <div class="card-title">Recent Activity</div>
+            <div class="activity-item">
+                <div class="activity-avatar"></div>
+                <div class="activity-content">
+                    <div class="activity-text">
+                        <span class="activity-name">Sarah Chen</span> completed Beach Cleanup
+                    </div>
+                    <div class="activity-time">2 hours ago</div>
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-avatar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                <div class="activity-content">
+                    <div class="activity-text">
+                        <span class="activity-name">Tech4Good</span> posted a new opportunity
+                    </div>
+                    <div class="activity-time">5 hours ago</div>
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-avatar" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+                <div class="activity-content">
+                    <div class="activity-text">
+                        <span class="activity-name">Bay Area Heroes</span> reached 1,000 hours!
+                    </div>
+                    <div class="activity-time">8 hours ago</div>
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-avatar" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
+                <div class="activity-content">
+                    <div class="activity-text">
+                        <span class="activity-name">Emma Davis</span> joined your squad
+                    </div>
+                    <div class="activity-time">1 day ago</div>
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                <div class="activity-content">
+                    <div class="activity-text">
+                        <span class="activity-name">Mike Johnson</span> endorsed your skills
+                    </div>
+                    <div class="activity-time">2 days ago</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommended Opportunities -->
+        <div class="glass-card opportunities">
+            <div class="card-title">Recommended for You</div>
+            <div class="opportunities-grid">
+                <div class="opportunity-card">
+                    <div class="opp-header">
+                        <div class="opp-icon">🌳</div>
+                        <div class="opp-badge">NEW</div>
+                    </div>
+                    <div class="opp-title">Tree Planting Initiative</div>
+                    <div class="opp-org">Green Earth Foundation</div>
+                    <div class="opp-meta">
+                        <span>📅 This Weekend</span>
+                        <span>👥 30 spots</span>
+                    </div>
+                </div>
+
+                <div class="opportunity-card">
+                    <div class="opp-header">
+                        <div class="opp-icon">🍎</div>
+                        <div class="opp-badge">URGENT</div>
+                    </div>
+                    <div class="opp-title">Food Bank Distribution</div>
+                    <div class="opp-org">SF Food Rescue</div>
+                    <div class="opp-meta">
+                        <span>📅 Tomorrow</span>
+                        <span>👥 15 spots</span>
+                    </div>
+                </div>
+
+                <div class="opportunity-card">
+                    <div class="opp-header">
+                        <div class="opp-icon">💻</div>
+                        <div class="opp-badge">REMOTE</div>
+                    </div>
+                    <div class="opp-title">Coding Mentorship</div>
+                    <div class="opp-org">Tech4Good</div>
+                    <div class="opp-meta">
+                        <span>📅 Ongoing</span>
+                        <span>👥 Flexible</span>
+                    </div>
+                </div>
+
+                <div class="opportunity-card">
+                    <div class="opp-header">
+                        <div class="opp-icon">🐾</div>
+                    </div>
+                    <div class="opp-title">Animal Shelter Care</div>
+                    <div class="opp-org">Bay Area Animal Rescue</div>
+                    <div class="opp-meta">
+                        <span>📅 Next Week</span>
+                        <span>👥 20 spots</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Squad Leaderboard -->
+        <div class="glass-card leaderboard">
+            <div class="card-title">Squad Leaderboard</div>
+
+            <div class="leaderboard-item">
+                <div class="rank gold">1</div>
+                <div class="leader-avatar"></div>
+                <div class="leader-info">
+                    <div class="leader-name">Sarah Chen</div>
+                    <div class="leader-hours">342 hours this year</div>
+                </div>
+                <div class="leader-score">🏆</div>
+            </div>
+
+            <div class="leaderboard-item">
+                <div class="rank silver">2</div>
+                <div class="leader-avatar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                <div class="leader-info">
+                    <div class="leader-name">Mike Johnson</div>
+                    <div class="leader-hours">298 hours this year</div>
+                </div>
+                <div class="leader-score">🥈</div>
+            </div>
+
+            <div class="leaderboard-item">
+                <div class="rank bronze">3</div>
+                <div class="leader-avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                <div class="leader-info">
+                    <div class="leader-name">Emma Davis</div>
+                    <div class="leader-hours">267 hours this year</div>
+                </div>
+                <div class="leader-score">🥉</div>
+            </div>
+
+            <div class="leaderboard-item">
+                <div class="rank">4</div>
+                <div class="leader-avatar" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                <div class="leader-info">
+                    <div class="leader-name">Alex Thompson</div>
+                    <div class="leader-hours">234 hours this year</div>
+                </div>
+                <div class="leader-score">⭐</div>
+            </div>
+
+            <div class="leaderboard-item">
+                <div class="rank">5</div>
+                <div class="leader-avatar" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+                <div class="leader-info">
+                    <div class="leader-name">Jordan Lee</div>
+                    <div class="leader-hours">198 hours this year</div>
+                </div>
+                <div class="leader-score">⭐</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Idol - Dashboard (Variation A: Peerlist Style)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Top Navigation */
+        .nav {
+            background: #0a0a0a;
+            border-bottom: 1px solid #1a1a1a;
+            padding: 0 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-search {
+            flex: 1;
+            max-width: 480px;
+            margin: 0 32px;
+        }
+
+        .nav-search input {
+            width: 100%;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 12px 16px;
+            color: #ffffff;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .nav-search input:focus {
+            outline: none;
+            border-color: #667eea;
+            background: #0f0f0f;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: #1a1a1a;
+            border: none;
+            color: #888;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .icon-btn:hover {
+            background: #2a2a2a;
+            color: #fff;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            cursor: pointer;
+        }
+
+        /* Main Layout */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+            display: grid;
+            grid-template-columns: 280px 1fr 320px;
+            gap: 24px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 24px;
+            height: fit-content;
+            position: sticky;
+            top: 88px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 32px;
+        }
+
+        .sidebar-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .sidebar-title {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .sidebar-item {
+            padding: 12px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #888;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            margin-bottom: 4px;
+        }
+
+        .sidebar-item:hover {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        .sidebar-item.active {
+            background: #667eea;
+            color: #fff;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        /* Main Feed */
+        .feed {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .feed-card {
+            background: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        .feed-card:hover {
+            border-color: #2a2a2a;
+        }
+
+        .card-header {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .card-info {
+            flex: 1;
+        }
+
+        .card-name {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 2px;
+        }
+
+        .card-meta {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .card-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-text {
+            color: #888;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .tag {
+            background: #1a1a1a;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .card-footer {
+            padding: 0 20px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 16px;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            color: #888;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            color: #fff;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+
+        /* Right Sidebar */
+        .widgets {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .widget {
+            background: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .widget-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .widget-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .widget-item:last-child {
+            border-bottom: none;
+        }
+
+        .widget-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .widget-info {
+            flex: 1;
+        }
+
+        .widget-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .widget-desc {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .btn-follow {
+            background: #1a1a1a;
+            border: none;
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-follow:hover {
+            background: #667eea;
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar, .widgets {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <div class="logo">Impact Idol</div>
+            <div class="nav-search">
+                <input type="text" placeholder="Search opportunities, people, organizations...">
+            </div>
+            <div class="nav-actions">
+                <button class="icon-btn">🏠</button>
+                <button class="icon-btn">🔔</button>
+                <button class="icon-btn">💬</button>
+                <div class="avatar"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Menu</div>
+                <div class="sidebar-item active">🏠 Feed</div>
+                <div class="sidebar-item">🔍 Discover</div>
+                <div class="sidebar-item">📅 My Events</div>
+                <div class="sidebar-item">👥 Squads</div>
+                <div class="sidebar-item">⭐ Saved</div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Your Stats</div>
+                <div class="stat-card">
+                    <div class="stat-number">127</div>
+                    <div class="stat-label">Hours This Month</div>
+                </div>
+                <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Events Completed</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Feed -->
+        <main class="feed">
+            <!-- Post 1 -->
+            <article class="feed-card">
+                <div class="card-header">
+                    <div class="card-avatar"></div>
+                    <div class="card-info">
+                        <div class="card-name">Sarah Chen completed an event</div>
+                        <div class="card-meta">2 hours ago · San Francisco, CA</div>
+                    </div>
+                    <button class="icon-btn">⋯</button>
+                </div>
+                <div class="card-image"></div>
+                <div class="card-content">
+                    <div class="card-title">Beach Cleanup at Ocean Beach 🌊</div>
+                    <div class="card-text">
+                        Amazing day cleaning up Ocean Beach with 45 volunteers! We collected over 200 lbs of trash and made a real difference. Thank you to everyone who came out!
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag">Environment</span>
+                        <span class="tag">Community Service</span>
+                        <span class="tag">Ocean Beach</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="card-actions">
+                        <button class="action-btn">❤️ 127</button>
+                        <button class="action-btn">💬 24</button>
+                        <button class="action-btn">🔄 12</button>
+                    </div>
+                    <button class="btn-primary">Join Next Event</button>
+                </div>
+            </article>
+
+            <!-- Post 2 -->
+            <article class="feed-card">
+                <div class="card-header">
+                    <div class="card-avatar" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                    <div class="card-info">
+                        <div class="card-name">Tech For Good is hosting</div>
+                        <div class="card-meta">Tomorrow at 2:00 PM · Remote</div>
+                    </div>
+                    <button class="icon-btn">⋯</button>
+                </div>
+                <div class="card-content">
+                    <div class="card-title">Volunteer Coding Workshop 💻</div>
+                    <div class="card-text">
+                        Join us for a 3-hour workshop teaching coding basics to underserved youth. We need 10 more volunteer instructors!
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag">Education</span>
+                        <span class="tag">Technology</span>
+                        <span class="tag">Youth Development</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="card-actions">
+                        <button class="action-btn">❤️ 89</button>
+                        <button class="action-btn">💬 15</button>
+                        <button class="action-btn">👥 32 going</button>
+                    </div>
+                    <button class="btn-primary">Sign Up</button>
+                </div>
+            </article>
+
+            <!-- Post 3 -->
+            <article class="feed-card">
+                <div class="card-header">
+                    <div class="card-avatar" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+                    <div class="card-info">
+                        <div class="card-name">Your Squad "Bay Area Heroes"</div>
+                        <div class="card-meta">3 hours ago · Squad Activity</div>
+                    </div>
+                    <button class="icon-btn">⋯</button>
+                </div>
+                <div class="card-content">
+                    <div class="card-title">Squad Milestone Achieved! 🎉</div>
+                    <div class="card-text">
+                        Congratulations! Your squad has collectively volunteered 1,000 hours this year. You're making an incredible impact!
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag">Milestone</span>
+                        <span class="tag">Squad Achievement</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="card-actions">
+                        <button class="action-btn">❤️ 234</button>
+                        <button class="action-btn">💬 56</button>
+                        <button class="action-btn">🎉 89</button>
+                    </div>
+                    <button class="btn-primary">View Squad</button>
+                </div>
+            </article>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="widgets">
+            <!-- Suggested Opportunities -->
+            <div class="widget">
+                <div class="widget-title">Trending Opportunities</div>
+                <div class="widget-item">
+                    <div class="widget-avatar"></div>
+                    <div class="widget-info">
+                        <div class="widget-name">Food Bank Drive</div>
+                        <div class="widget-desc">Tomorrow · 50 spots left</div>
+                    </div>
+                    <button class="btn-follow">Join</button>
+                </div>
+                <div class="widget-item">
+                    <div class="widget-avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                    <div class="widget-info">
+                        <div class="widget-name">Animal Shelter</div>
+                        <div class="widget-desc">This weekend · 12 spots left</div>
+                    </div>
+                    <button class="btn-follow">Join</button>
+                </div>
+                <div class="widget-item">
+                    <div class="widget-avatar" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
+                    <div class="widget-info">
+                        <div class="widget-name">Tree Planting</div>
+                        <div class="widget-desc">Next week · 30 spots left</div>
+                    </div>
+                    <button class="btn-follow">Join</button>
+                </div>
+            </div>
+
+            <!-- Suggested Connections -->
+            <div class="widget">
+                <div class="widget-title">Connect with Volunteers</div>
+                <div class="widget-item">
+                    <div class="widget-avatar"></div>
+                    <div class="widget-info">
+                        <div class="widget-name">Mike Johnson</div>
+                        <div class="widget-desc">234 hours · 15 mutual</div>
+                    </div>
+                    <button class="btn-follow">Follow</button>
+                </div>
+                <div class="widget-item">
+                    <div class="widget-avatar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                    <div class="widget-info">
+                        <div class="widget-name">Emma Davis</div>
+                        <div class="widget-desc">189 hours · 8 mutual</div>
+                    </div>
+                    <button class="btn-follow">Follow</button>
+                </div>
+            </div>
+        </aside>
+    </div>
+</body>
+</html>
