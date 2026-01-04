@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useAuth } from "@/lib/stores/auth-store";
 import { trpc } from "@/lib/utils/trpc";
 import { OrgNavigation } from "@/components/org/org-navigation";
-import { Calendar, MapPin, Users, Plus, MoreVertical, Edit, Copy, Trash2, Eye, Clock, Filter, Search } from "lucide-react";
+import { Calendar, MapPin, Users, Plus, MoreVertical, Edit, Copy, Trash2, Eye, Clock, Filter, Search, Zap } from "lucide-react";
 import { toast } from "sonner";
 import Link from "next/link";
 
@@ -282,6 +282,13 @@ export default function OrgOpportunitiesPage() {
 
                     {/* Actions */}
                     <div className="flex items-center gap-2">
+                      <Link
+                        href={`/org/dashboard/matching/${opp.id}`}
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium text-linear-900 bg-white border border-linear-200 rounded hover:bg-linear-50 transition-colors"
+                      >
+                        <Zap className="h-3.5 w-3.5" />
+                        Match Volunteers
+                      </Link>
                       <Link
                         href={`/org/opportunities/${opp.id}`}
                         className="flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium text-linear-900 bg-white border border-linear-200 rounded hover:bg-linear-50 transition-colors"

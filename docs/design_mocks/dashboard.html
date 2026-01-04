@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Idol - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            500: '#10b981', // Emerald 500
+                            600: '#059669', // Emerald 600
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-slate-50 text-slate-900 font-sans antialiased">
+
+    <!-- Top Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center gap-8">
+                    <div class="flex items-center gap-2">
+                        <div class="bg-brand-500 rounded-lg p-1.5">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <span class="font-display font-bold text-xl tracking-tight text-slate-900">Impact Idol</span>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="#" class="text-slate-900 font-medium text-sm">Dashboard</a>
+                        <a href="#"
+                            class="text-slate-500 hover:text-slate-900 font-medium text-sm transition-colors">Feed</a>
+                        <a href="#"
+                            class="text-slate-500 hover:text-slate-900 font-medium text-sm transition-colors">Discovery</a>
+                        <a href="#" class="text-slate-500 hover:text-slate-900 font-medium text-sm transition-colors">My
+                            Network</a>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="p-2 text-slate-400 hover:text-slate-600 transition-colors relative">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                            </path>
+                        </svg>
+                        <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
+                    </button>
+                    <div
+                        class="w-9 h-9 rounded-full bg-slate-200 overflow-hidden ring-2 ring-white shadow-sm cursor-pointer">
+                        <img src="https://i.pravatar.cc/150?u=dashboard" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- Welcome Hero -->
+        <header class="mb-10">
+            <h1 class="font-display text-3xl font-bold text-slate-900">Welcome back, Alex 👋</h1>
+            <p class="text-slate-500 mt-2">You've made a huge impact this month. Keep it up!</p>
+        </header>
+
+        <div class="grid grid-cols-12 gap-8">
+
+            <!-- Main Content Column -->
+            <div class="col-span-12 lg:col-span-8 space-y-8">
+
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-3 gap-6">
+                    <div
+                        class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="p-2 bg-blue-50 text-blue-600 rounded-lg">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-sm font-medium text-slate-500">Hours</span>
+                        </div>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-3xl font-bold text-slate-900">42.5</span>
+                            <span
+                                class="text-xs font-semibold text-green-600 bg-green-50 px-1.5 py-0.5 rounded">+12%</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="p-2 bg-purple-50 text-purple-600 rounded-lg">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <span class="text-sm font-medium text-slate-500">Network Reach</span>
+                        </div>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-3xl font-bold text-slate-900">843</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="p-2 bg-orange-50 text-orange-600 rounded-lg">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <span class="text-sm font-medium text-slate-500">Impact Score</span>
+                        </div>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-3xl font-bold text-slate-900">Top 5%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Goals Section -->
+                <section class="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="font-display text-xl font-bold">Goals Progress</h2>
+                        <button class="text-sm font-medium text-brand-600 hover:text-brand-700">Edit Goals</button>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Goal 1 -->
+                        <div>
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="font-medium text-slate-700">Monthly Volunteer Hours</span>
+                                <span class="text-slate-500">8.5 / 12 hrs</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-3">
+                                <div class="bg-brand-500 h-3 rounded-full" style="width: 70%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Goal 2 -->
+                        <div>
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="font-medium text-slate-700">Skills to Learn</span>
+                                <span class="text-slate-500">1 / 3 skills</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-3">
+                                <div class="bg-purple-500 h-3 rounded-full" style="width: 33%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Activity Feed Preview -->
+                <section>
+                    <h2 class="font-display text-xl font-bold mb-4">Network Activity</h2>
+                    <div class="bg-white rounded-3xl border border-slate-200 divide-y divide-slate-100 shadow-sm">
+
+                        <!-- Item 1 -->
+                        <div class="p-6 flex gap-4">
+                            <div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
+                                <img src="https://i.pravatar.cc/150?u=a1" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <p class="text-slate-900 text-sm">
+                                    <span class="font-semibold">Sarah Jenkins</span> registered for <span
+                                        class="font-semibold text-brand-600">Beach Cleanup 2026</span>
+                                </p>
+                                <p class="text-slate-500 text-xs mt-1">2 hours ago</p>
+                            </div>
+                            <button
+                                class="ml-auto text-sm font-medium text-brand-600 hover:bg-brand-50 px-3 py-1 rounded-full border border-transparent hover:border-brand-200 transition-colors">
+                                Join
+                            </button>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="p-6 flex gap-4">
+                            <div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
+                                <img src="https://i.pravatar.cc/150?u=a2" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <p class="text-slate-900 text-sm">
+                                    <span class="font-semibold">Michael Chen</span> endorsed you for <span
+                                        class="font-semibold">Event Planning</span>
+                                </p>
+                                <p class="text-slate-500 text-xs mt-1">5 hours ago</p>
+                            </div>
+                            <button
+                                class="ml-auto text-sm font-medium text-slate-600 hover:bg-slate-50 px-3 py-1 rounded-full border border-slate-200 transition-colors">
+                                Say Thanks
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Right Sidebar -->
+            <aside class="col-span-12 lg:col-span-4 space-y-8">
+
+                <!-- Recommended Opportunities -->
+                <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm">
+                    <h3 class="font-bold text-slate-900 mb-4">Recommended for you</h3>
+                    <div class="space-y-4">
+                        <div class="group cursor-pointer">
+                            <div class="relative h-32 rounded-xl overflow-hidden mb-3">
+                                <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                <div
+                                    class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded text-xs font-bold shadow-sm">
+                                    Sat, Mar 12</div>
+                            </div>
+                            <h4
+                                class="font-bold text-slate-900 leading-tight group-hover:text-brand-600 transition-colors">
+                                Community Garden Setup</h4>
+                            <p class="text-xs text-slate-500 mt-1">Green Earther • 2 miles away</p>
+                        </div>
+
+                        <div class="group cursor-pointer pt-4 border-t border-slate-100">
+                            <div class="flex gap-3">
+                                <div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80"
+                                        class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <h4
+                                        class="font-bold text-slate-900 text-sm group-hover:text-brand-600 transition-colors">
+                                        Tech Mentor Night</h4>
+                                    <p class="text-xs text-slate-500 mt-1">Code for Good • Online</p>
+                                    <span
+                                        class="inline-block mt-2 text-xs font-medium bg-purple-50 text-purple-600 px-2 py-0.5 rounded">Skilled</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                        class="w-full mt-6 py-2.5 text-sm font-semibold text-center text-slate-700 bg-slate-50 hover:bg-slate-100 rounded-xl transition-colors">
+                        View All Opportunities
+                    </button>
+                </div>
+
+                <!-- Upcoming Schedule -->
+                <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm">
+                    <h3 class="font-bold text-slate-900 mb-4">Your Schedule</h3>
+                    <div class="space-y-4">
+                        <div class="flex gap-4 items-start">
+                            <div
+                                class="flex flex-col items-center min-w-[3rem] p-2 bg-slate-50 rounded-xl border border-slate-100">
+                                <span class="text-xs font-bold text-slate-400 uppercase">Feb</span>
+                                <span class="text-xl font-bold text-slate-900">24</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-slate-900 text-sm">Soup Kitchen Server</h4>
+                                <p class="text-xs text-slate-500 mt-0.5">10:00 AM - 2:00 PM</p>
+                                <p class="text-xs text-slate-500 mt-0.5">Downtown Shelter</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+        </div>
+    </main>
+
+</body>
+
+</html>

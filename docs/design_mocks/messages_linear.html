@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Idol - Inbox</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', "Liberation Mono", "Courier New", 'monospace'],
+                    },
+                    colors: {
+                        linear: {
+                            50: '#f7f8f8',
+                            100: '#edeef0',
+                            200: '#d7dadf',
+                            300: '#b6bcc6',
+                            400: '#8e98a8',
+                            500: '#6c788e',
+                            600: '#545f73',
+                            700: '#454d5d',
+                            800: '#3a404c',
+                            900: '#323741',
+                            950: '#22252b',
+                        },
+                        peer: {
+                            green: '#00aa45',
+                        }
+                    },
+                    boxShadow: {
+                        'subtle': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+        }
+
+        .thread-item:hover {
+            background-color: #f7f8f8;
+        }
+
+        .thread-item.active {
+            background-color: #f7f8f8;
+            box-shadow: inset 3px 0 0 #3a404c;
+        }
+
+        .message-bubble {
+            max-width: 85%;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-linear-900 font-sans h-screen flex overflow-hidden">
+
+    <!-- Sidebar 1: Navigation -->
+    <nav class="w-16 lg:w-56 border-r border-linear-100 bg-[#fbfbfc] flex flex-col shrink-0 transition-all">
+        <div class="h-14 flex items-center px-4 border-b border-linear-100/50 shrink-0">
+            <div
+                class="w-6 h-6 bg-peer-green rounded-md flex items-center justify-center text-white font-bold text-xs shrink-0">
+                P</div>
+            <span class="ml-2 font-semibold text-[13px] tracking-tight hidden lg:block">Impact Idol</span>
+            <button class="ml-auto p-1 text-linear-400 hover:bg-linear-100 rounded hidden lg:block"><svg class="w-4 h-4"
+                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                    </path>
+                </svg></button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto py-2 px-2 space-y-0.5">
+            <a href="#"
+                class="flex items-center gap-3 px-2 lg:px-3 py-1.5 rounded-md bg-linear-100/50 text-linear-900 font-medium">
+                <svg class="w-4 h-4 text-linear-800 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4">
+                    </path>
+                </svg>
+                <span class="text-[13px] hidden lg:block">Inbox</span>
+                <span class="ml-auto text-[10px] bg-linear-200 px-1.5 rounded-full hidden lg:block">3</span>
+            </a>
+            <a href="#"
+                class="flex items-center gap-3 px-2 lg:px-3 py-1.5 rounded-md hover:bg-linear-50 text-linear-600 transition-colors">
+                <svg class="w-4 h-4 text-linear-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                </svg>
+                <span class="text-[13px] hidden lg:block">Sent</span>
+            </a>
+            <a href="#"
+                class="flex items-center gap-3 px-2 lg:px-3 py-1.5 rounded-md hover:bg-linear-50 text-linear-600 transition-colors">
+                <svg class="w-4 h-4 text-linear-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+                </svg>
+                <span class="text-[13px] hidden lg:block">Archive</span>
+            </a>
+
+            <div class="h-px bg-linear-100 my-2 mx-3 hidden lg:block"></div>
+
+            <div class="px-3 mb-1 text-[11px] font-medium text-linear-500 uppercase tracking-wider hidden lg:block">
+                Labels</div>
+            <a href="#"
+                class="flex items-center gap-3 px-2 lg:px-3 py-1.5 rounded-md hover:bg-linear-50 text-linear-600 transition-colors">
+                <div class="w-2 h-2 rounded-full border border-orange-300 bg-orange-100 shrink-0"></div>
+                <span class="text-[13px] hidden lg:block">Volunteering</span>
+            </a>
+            <a href="#"
+                class="flex items-center gap-3 px-2 lg:px-3 py-1.5 rounded-md hover:bg-linear-50 text-linear-600 transition-colors">
+                <div class="w-2 h-2 rounded-full border border-purple-300 bg-purple-100 shrink-0"></div>
+                <span class="text-[13px] hidden lg:block">Support</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Sidebar 2: Thread List -->
+    <div class="w-80 border-r border-linear-100 bg-white flex flex-col shrink-0">
+        <div class="h-14 border-b border-linear-100 flex items-center px-4 justify-between shrink-0">
+            <span class="font-medium text-[13px]">Inbox (3)</span>
+            <button class="text-linear-400 hover:text-linear-700"><svg class="w-4 h-4" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z">
+                    </path>
+                </svg></button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto">
+            <!-- Item 1 (Active) -->
+            <div class="thread-item active p-3 cursor-pointer group">
+                <div class="flex justify-between items-start mb-1">
+                    <span class="text-[13px] font-semibold text-linear-900">Sarah Jenkins</span>
+                    <span class="text-[11px] text-linear-400">2m</span>
+                </div>
+                <div class="text-[12px] font-medium text-linear-800 mb-1">Re: Coastal Cleanup Logistics</div>
+                <p class="text-[12px] text-linear-500 line-clamp-2">Hey Pushkar, just confirming the drop-off location
+                    for the supplies. Is it still Gate 4?</p>
+                <div class="mt-2 flex gap-1">
+                    <span
+                        class="px-1.5 py-0.5 bg-orange-50 text-orange-700 text-[10px] rounded border border-orange-100">Volunteering</span>
+                </div>
+            </div>
+
+            <!-- Item 2 (Unread) -->
+            <div class="thread-item p-3 cursor-pointer group border-b border-linear-50">
+                <div class="flex justify-between items-start mb-1">
+                    <div class="flex items-center gap-1.5">
+                        <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+                        <span class="text-[13px] font-semibold text-linear-900">Alex Rivera</span>
+                    </div>
+                    <span class="text-[11px] text-linear-400">1h</span>
+                </div>
+                <div class="text-[12px] font-medium text-linear-800 mb-1">New Opportunity Match</div>
+                <p class="text-[12px] text-linear-500 line-clamp-2">I saw this new teaching opportunity at code.org and
+                    thought of you. Check it out!</p>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="thread-item p-3 cursor-pointer group">
+                <div class="flex justify-between items-start mb-1">
+                    <span class="text-[13px] font-medium text-linear-600">Ocean Cleanup Team</span>
+                    <span class="text-[11px] text-linear-400">Yesterday</span>
+                </div>
+                <div class="text-[12px] font-medium text-linear-600 mb-1">Event Reminder: Annual Gala</div>
+                <p class="text-[12px] text-linear-400 line-clamp-2">Don't forget to register for the annual gala by
+                    Friday. Tickets are selling out fast.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content: Thread View -->
+    <main class="flex-1 flex flex-col min-w-0 bg-white">
+        <!-- Thread Header -->
+        <header class="h-14 border-b border-linear-100 flex items-center px-6 justify-between shrink-0">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-linear-100 overflow-hidden"><img
+                        src="https://i.pravatar.cc/150?u=sarah" class="w-full h-full object-cover"></div>
+                <div>
+                    <div class="text-[13px] font-bold text-linear-900">Sarah Jenkins</div>
+                    <div class="text-[11px] text-linear-500">sarah.j@example.com</div>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <button class="p-2 text-linear-400 hover:text-linear-700 hover:bg-linear-50 rounded"><svg
+                        class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
+                        </path>
+                    </svg></button>
+            </div>
+        </header>
+
+        <!-- Messages Area -->
+        <div class="flex-1 overflow-y-auto p-6 space-y-6">
+
+            <!-- Date Separator -->
+            <div class="flex justify-center">
+                <span
+                    class="text-[10px] font-medium text-linear-400 bg-linear-50 px-2 py-1 rounded-full border border-linear-100">Today,
+                    10:42 AM</span>
+            </div>
+
+            <!-- Message 1 -->
+            <div class="flex gap-4 group">
+                <div class="w-8 h-8 rounded-full bg-linear-100 shrink-0 overflow-hidden"><img
+                        src="https://i.pravatar.cc/150?u=sarah" class="w-full h-full object-cover"></div>
+                <div class="flex-1">
+                    <div class="flex items-baseline gap-2 mb-1">
+                        <span class="text-[13px] font-bold text-linear-900">Sarah Jenkins</span>
+                        <span class="text-[11px] text-linear-400">10:42 AM</span>
+                    </div>
+                    <div class="text-[13px] text-linear-800 leading-relaxed">
+                        <p>Hey Pushkar, just confirming the drop-off location for the supplies. Is it still Gate 4? I
+                            remember you mentioned they might be doing construction on the main entrance.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Message 2 (Me) -->
+            <div
+                class="flex gap-4 group bg-linear-50/50 p-4 -mx-4 rounded-lg border border-transparent hover:border-linear-100 transition-colors">
+                <div class="w-8 h-8 rounded-full bg-linear-100 shrink-0 overflow-hidden"><img
+                        src="https://i.pravatar.cc/150?u=remix" class="w-full h-full object-cover"></div>
+                <div class="flex-1">
+                    <div class="flex items-baseline gap-2 mb-1">
+                        <span class="text-[13px] font-bold text-linear-900">Pushkar Phatak</span>
+                        <span class="text-[11px] text-linear-400">10:45 AM</span>
+                    </div>
+                    <div class="text-[13px] text-linear-800 leading-relaxed">
+                        <p>Hi Sarah! Yes, Gate 4 is correct. The construction is actually on the north side, so the west
+                            entrance (Gate 4) is completely clear.</p>
+                        <p class="mt-2 text-linear-500 italic text-[12px]">Attached: <a href="#"
+                                class="text-blue-600 underline hover:text-blue-800">map_gate_4.pdf</a></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Composer -->
+        <div class="p-6 pt-2 shrink-0">
+            <div
+                class="relative border border-linear-200 rounded-lg shadow-sm bg-white focus-within:ring-1 focus-within:ring-linear-300 focus-within:border-linear-300 transition-shadow">
+                <textarea
+                    class="w-full min-h-[100px] max-h-[300px] p-3 text-[13px] text-linear-900 placeholder-linear-400 focus:outline-none resize-none rounded-t-lg"
+                    placeholder="Reply to Sarah..."></textarea>
+                <div
+                    class="flex justify-between items-center px-2 py-2 bg-linear-50 rounded-b-lg border-t border-linear-100">
+                    <div class="flex gap-1">
+                        <button class="p-1.5 text-linear-500 hover:text-linear-900 hover:bg-linear-200 rounded"><svg
+                                class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13">
+                                </path>
+                            </svg></button>
+                        <button class="p-1.5 text-linear-500 hover:text-linear-900 hover:bg-linear-200 rounded"><svg
+                                class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                                </path>
+                            </svg></button>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <span class="text-[11px] text-linear-400">Cmd + Enter to send</span>
+                        <button
+                            class="bg-linear-900 text-white text-[12px] font-medium px-3 py-1.5 rounded hover:bg-black transition-colors shadow-subtle">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+
+</html>

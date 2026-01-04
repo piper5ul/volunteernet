@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Idol - User Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            500: '#10b981',
+                            600: '#059669',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 text-slate-900 font-sans antialiased">
+
+    <!-- Top Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center gap-8">
+                    <div class="flex items-center gap-2">
+                        <div class="bg-brand-500 rounded-lg p-1.5">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <span class="font-display font-bold text-xl tracking-tight text-slate-900">Impact Idol</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="text-sm font-medium text-slate-500 hover:text-slate-900">Sign Out</a>
+                    <div class="w-9 h-9 rounded-full bg-slate-200 overflow-hidden ring-2 ring-white shadow-sm">
+                        <img src="https://i.pravatar.cc/150?u=dashboard" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- Header / Cover -->
+        <div class="relative h-64 md:h-80 w-full bg-slate-800 overflow-hidden">
+            <!-- Cover Photo -->
+            <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
+                class="w-full h-full object-cover opactiy-80">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-24 relative z-10 pb-20">
+
+            <div class="grid grid-cols-12 gap-8">
+
+                <!-- Left Details Sticky -->
+                <div class="col-span-12 md:col-span-4 lg:col-span-3">
+                    <div
+                        class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col items-center text-center sticky top-24">
+
+                        <!-- Avatar -->
+                        <div
+                            class="w-32 h-32 rounded-full border-4 border-white shadow-lg overflow-hidden -mt-20 mb-4 bg-white">
+                            <img src="https://i.pravatar.cc/300?u=alex" class="w-full h-full object-cover">
+                        </div>
+
+                        <h1 class="text-2xl font-bold font-display text-slate-900">Alex Rivera</h1>
+                        <p class="text-slate-500 text-sm mb-4">Software Engineer & Volunteer</p>
+
+                        <!-- Badges -->
+                        <div class="flex gap-2 justify-center mb-6">
+                            <span
+                                class="px-2 py-1 bg-yellow-50 text-yellow-700 text-xs font-bold rounded border border-yellow-200">Gold
+                                Volunteer</span>
+                            <span
+                                class="px-2 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded border border-blue-200">Mentor</span>
+                        </div>
+
+                        <!-- Highlights -->
+                        <div class="w-full space-y-4 border-t border-gray-100 pt-6">
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-500">Connections</span>
+                                <span class="font-bold text-slate-900 hover:underline cursor-pointer">342</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-500">Impact Hours</span>
+                                <span class="font-bold text-slate-900">128</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-500">Events</span>
+                                <span class="font-bold text-slate-900">42</span>
+                            </div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="w-full mt-6 grid grid-cols-2 gap-3">
+                            <button
+                                class="col-span-2 bg-brand-600 hover:bg-brand-700 text-white font-medium py-2 rounded-xl transition-colors shadow-sm shadow-brand-200">Message</button>
+                            <button
+                                class="bg-white border border-gray-300 text-slate-700 font-medium py-2 rounded-xl hover:bg-gray-50 transition-colors">More</button>
+                            <button
+                                class="bg-white border border-gray-300 text-slate-700 font-medium py-2 rounded-xl hover:bg-gray-50 transition-colors">Share</button>
+                        </div>
+
+                    </div>
+
+                    <!-- Skills Widget -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mt-6">
+                        <h3 class="font-bold text-sm uppercase tracking-wider text-gray-400 mb-4">Top Skills</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-gray-100/50 text-slate-700 text-sm rounded-full border border-gray-200">Coding</span>
+                            <span
+                                class="px-3 py-1 bg-gray-100/50 text-slate-700 text-sm rounded-full border border-gray-200">Event
+                                Planning</span>
+                            <span
+                                class="px-3 py-1 bg-gray-100/50 text-slate-700 text-sm rounded-full border border-gray-200">Teaching</span>
+                            <span
+                                class="px-3 py-1 bg-gray-100/50 text-slate-700 text-sm rounded-full border border-gray-200">Fundraising</span>
+                        </div>
+                        <button class="text-sm text-brand-600 font-medium mt-4 hover:underline">View All
+                            Endorsements</button>
+                    </div>
+
+                </div>
+
+                <!-- Main Content Tabs -->
+                <div class="col-span-12 md:col-span-8 lg:col-span-9 pt-0 md:pt-4">
+
+                    <!-- Tab Names -->
+                    <div class="flex border-b border-gray-200 mb-8 overflow-x-auto">
+                        <a href="#"
+                            class="px-6 py-4 border-b-2 border-brand-500 text-brand-600 font-medium text-sm whitespace-nowrap">Activity</a>
+                        <a href="#"
+                            class="px-6 py-4 border-b-2 border-transparent text-slate-500 hover:text-slate-800 font-medium text-sm transition-colors whitespace-nowrap">Experience</a>
+                        <a href="#"
+                            class="px-6 py-4 border-b-2 border-transparent text-slate-500 hover:text-slate-800 font-medium text-sm transition-colors whitespace-nowrap">Photos</a>
+                        <a href="#"
+                            class="px-6 py-4 border-b-2 border-transparent text-slate-500 hover:text-slate-800 font-medium text-sm transition-colors whitespace-nowrap">Recommendations
+                            <span class="bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded-full text-xs ml-1">3</span></a>
+                    </div>
+
+                    <!-- Activity Feed implementation similar to Dashboard but focused on user -->
+                    <div class="space-y-6">
+
+                        <!-- Create Post -->
+                        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex gap-4">
+                            <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden flex-shrink-0">
+                                <img src="https://i.pravatar.cc/300?u=alex" class="w-full h-full object-cover">
+                            </div>
+                            <input type="text" placeholder="Post an update about your volunteering..."
+                                class="flex-1 bg-transparent py-2 outline-none text-sm">
+                        </div>
+
+                        <!-- Post Item -->
+                        <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                            <div class="p-4 flex gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden flex-shrink-0"><img
+                                        src="https://i.pravatar.cc/300?u=alex" class="w-full h-full object-cover"></div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900">Alex Rivera</p>
+                                    <p class="text-xs text-slate-500">2 days ago • Public</p>
+                                </div>
+                            </div>
+                            <div class="px-4 pb-3">
+                                <p class="text-slate-800 text-sm leading-relaxed mb-3">
+                                    Had an amazing time organizing the Tech for Good workshop yesterday! Over 30
+                                    students showed up to learn about web development. Does anyone have resources for
+                                    beginner Python tutorials?
+                                </p>
+                                <div class="grid grid-cols-2 gap-1 rounded-lg overflow-hidden h-64">
+                                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                        class="w-full h-full object-cover">
+                                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                        class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                            <div class="px-4 py-3 bg-gray-50 border-t border-gray-100 flex justify-between">
+                                <div class="flex gap-4">
+                                    <button
+                                        class="text-slate-500 hover:text-brand-600 text-sm font-medium flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5">
+                                            </path>
+                                        </svg>
+                                        Like (24)
+                                    </button>
+                                    <button
+                                        class="text-slate-500 hover:text-blue-600 text-sm font-medium flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 8 9 8z">
+                                            </path>
+                                        </svg>
+                                        Comment (5)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

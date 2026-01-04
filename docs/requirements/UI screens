@@ -1,0 +1,174 @@
+COMPLETE LIST OF MISSING SCREENS (The 95%)
+1. NETWORKING & CONNECTIONS (0% complete - nothing exists)
+Missing screens:
+/connections - My connections list with search/filter
+/connections/requests - Pending connection requests inbox
+/connections/sent - Sent requests status
+/discover/people - Find people to connect with
+/connections/suggestions - "People you may know"
+/connections/[userId] - Mutual connections view
+Connection request modal/dialog
+Remove connection confirmation dialog
+2. ACTIVITY FEED & HOME (0% complete)
+Missing screens:
+/home or /feed - Main activity feed (LinkedIn-style homepage)
+Feed showing: volunteer updates, endorsements, new connections, event RSVPs
+Post creation modal (share volunteer experiences)
+Comment/like system on posts
+Share functionality
+Feed filters (connections only, organizations, specific causes)
+3. ENHANCED PROFILE SCREENS (70% missing)
+Current: Basic profile exists at /profile/[username] Missing screens/sections:
+/profile/[username]/activity - Activity timeline
+/profile/[username]/recommendations - Recommendations received
+/profile/[username]/endorsements - Skills endorsements
+/profile/edit/experience - Detailed volunteer history editing
+/profile/edit/skills - Skills management
+/profile/edit/media - Upload photos/videos from events
+/profile/edit/privacy - Privacy settings
+/profile/analytics - Who viewed my profile
+Portfolio/media gallery section
+Recommendation request modal
+Endorsement skills modal
+4. ORGANIZATION PROFILES (80% missing)
+Current: Basic org dashboard exists for admins Missing screens:
+/org/[orgId] - PUBLIC organization profile page (like LinkedIn company pages)
+Organization followers page
+Organization reviews/ratings page
+Organization photo gallery
+Organization impact stories/blog
+Organization volunteer alumni network
+"Follow" button and follower count
+Organization search/directory page
+5. OPPORTUNITY DETAILS (60% missing)
+Current: Basic opportunity list and detail exists Missing enhancements:
+Photo galleries for events
+Volunteer roster/attendee list
+Event discussion board
+Check-in/check-out UI with QR codes
+Photo uploads during/after event
+Event recap page with photos/impact
+Share event to feed
+Invite connections to event
+6. SEARCH & DISCOVERY (80% missing)
+Current: Basic opportunity search exists Missing screens:
+/search - Universal search (people, orgs, opportunities, causes)
+/search/people - Advanced people search with filters
+/search/organizations - Organization directory
+/search/opportunities - Enhanced opportunity search
+/causes - Browse by cause/impact area
+/calendar - Calendar view of opportunities
+/map - Map-based discovery
+/groups - Volunteer communities/affinity groups
+Search results with faceted filters
+Saved searches
+7. REVIEWS & RATINGS (100% missing - no UI)
+Missing screens:
+Leave review modal after volunteering
+Organization reviews page
+Volunteer ratings/feedback from orgs
+Review response from organizations
+Report inappropriate review
+8. VERIFICATION & CHECK-IN (90% missing)
+Current: Basic verification queue exists for orgs Missing screens:
+/check-in/[eventId] - QR code check-in page
+Photo upload for verification
+Location verification UI
+Bulk check-in for squads
+Hour dispute resolution page
+Verification history log
+Auto-verification status indicators
+9. NOTIFICATIONS (100% missing - no UI)
+Missing screens:
+/notifications - Notification center
+Notification dropdown in navbar (exists but basic)
+Notification settings page
+Email preferences page
+Push notification opt-in
+Notification grouping/filtering
+10. MESSAGING ENHANCEMENTS (40% missing)
+Current: Basic messaging exists Missing features:
+Group chat UI improvements
+Message search
+Attachment support (images, files)
+Video call integration
+Message reactions
+Read receipts
+Typing indicators
+Archive/mute conversations
+11. SQUADS ENHANCEMENTS (50% missing)
+Current: Basic squad creation and joining exists Missing screens:
+Squad member directory
+Squad settings page
+Squad activity feed
+Squad achievements/milestones
+Squad leaderboard
+Squad photo gallery
+Invite members modal (improved)
+Squad roles/permissions
+12. DASHBOARD ENHANCEMENTS (60% missing)
+Current: Basic stats dashboard exists Missing screens:
+Export impact as PDF
+Share impact card to social media
+Goals setting and tracking
+Milestone celebrations
+Year-in-review page
+Impact comparison with network
+Personalized recommendations
+13. ONBOARDING & AUTHENTICATION (70% missing)
+Current: Basic persona switcher (demo mode) Missing screens:
+Proper signup flow with steps
+Email verification page
+Profile setup wizard
+Skills/interests selection
+Cause preference selection
+First-time user tutorial/walkthrough
+Connect social accounts (LinkedIn import)
+14. SETTINGS & PREFERENCES (90% missing)
+Missing screens:
+/settings - Main settings page
+/settings/account - Account settings
+/settings/privacy - Privacy controls
+/settings/notifications - Notification preferences
+/settings/emails - Email preferences
+/settings/integrations - Calendar, LinkedIn sync
+/settings/data - Download/delete data
+Deactivate/delete account
+15. IMPACT & ANALYTICS (70% missing)
+Current: Basic stats on dashboard Missing screens:
+Detailed analytics dashboard
+Impact by cause breakdown
+Impact over time visualizations
+Network impact comparison
+Achievement badges gallery
+Certifications/completion certificates
+Grant reporting tools (for orgs)
+Export reports in multiple formats
+16. MOBILE-OPTIMIZED VERSIONS (80% missing)
+Current: Responsive layouts exist but not optimized Missing:
+Mobile-first designs for all pages
+Touch-optimized interactions
+Mobile check-in flow
+Mobile photo upload
+PWA features (offline mode, install prompt)
+Mobile navigation improvements
+17. ORGANIZATION ADMIN PAGES (60% missing)
+Current: Basic org dashboard, verification, opportunities Missing screens:
+Volunteer CRM page
+Volunteer segmentation
+Email campaigns to volunteers
+Event attendance reports
+Volunteer retention analytics
+Organization settings
+Team member management
+Organization branding/customization
+18. HELP & SUPPORT (100% missing)
+Missing screens:
+Help center/FAQ
+Contact support
+Report a problem
+Feature requests
+Community guidelines
+Terms of service page
+Privacy policy page
+About us page

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Idol - Discover</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            500: '#10b981',
+                            600: '#059669',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-slate-50 text-slate-900 font-sans antialiased">
+
+    <!-- Top Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center gap-8">
+                    <div class="flex items-center gap-2">
+                        <div class="bg-brand-500 rounded-lg p-1.5">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <span class="font-display font-bold text-xl tracking-tight text-slate-900">Impact Idol</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-sm text-slate-500">San Francisco, CA</span>
+                    <div class="w-9 h-9 rounded-full bg-slate-200 overflow-hidden ring-2 ring-white shadow-sm">
+                        <img src="https://i.pravatar.cc/150?u=dashboard" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- Search Header -->
+        <header class="mb-10 text-center max-w-2xl mx-auto">
+            <h1 class="font-display text-4xl font-bold text-slate-900 mb-4">Find your next mission</h1>
+            <div class="relative">
+                <input type="text" placeholder="Search for causes, people, or organizations..."
+                    class="w-full pl-12 pr-4 py-4 rounded-2xl border border-slate-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent text-lg bg-white">
+                <svg class="w-6 h-6 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </div>
+            <!-- Quick Filters -->
+            <div class="flex gap-2 justify-center mt-4 overflow-x-auto pb-2">
+                <button
+                    class="px-4 py-1.5 rounded-full bg-slate-900 text-white text-sm font-medium hover:bg-slate-800 transition-colors">Everything</button>
+                <button
+                    class="px-4 py-1.5 rounded-full bg-white border border-slate-200 text-slate-600 text-sm font-medium hover:bg-slate-50 transition-colors">People</button>
+                <button
+                    class="px-4 py-1.5 rounded-full bg-white border border-slate-200 text-slate-600 text-sm font-medium hover:bg-slate-50 transition-colors">Organizations</button>
+                <button
+                    class="px-4 py-1.5 rounded-full bg-white border border-slate-200 text-slate-600 text-sm font-medium hover:bg-slate-50 transition-colors">Events</button>
+                <button
+                    class="px-4 py-1.5 rounded-full bg-white border border-slate-200 text-slate-600 text-sm font-medium hover:bg-slate-50 transition-colors">Causes</button>
+            </div>
+        </header>
+
+        <section class="mb-12">
+            <h2 class="font-display text-2xl font-bold text-slate-900 mb-6">Trending Causes</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Cause Card 1 -->
+                <div class="group relative rounded-2xl overflow-hidden aspect-[4/3] cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb7d5b43?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end">
+                        <h3 class="text-white font-bold text-xl">Environment</h3>
+                        <p class="text-white/80 text-sm">234 Local Opportunities</p>
+                    </div>
+                </div>
+                <!-- Cause Card 2 -->
+                <div class="group relative rounded-2xl overflow-hidden aspect-[4/3] cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end">
+                        <h3 class="text-white font-bold text-xl">Education</h3>
+                        <p class="text-white/80 text-sm">118 Local Opportunities</p>
+                    </div>
+                </div>
+                <!-- Cause Card 3 -->
+                <div class="group relative rounded-2xl overflow-hidden aspect-[4/3] cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end">
+                        <h3 class="text-white font-bold text-xl">Animal Welfare</h3>
+                        <p class="text-white/80 text-sm">56 Local Opportunities</p>
+                    </div>
+                </div>
+                <!-- Cause Card 4 -->
+                <div class="group relative rounded-2xl overflow-hidden aspect-[4/3] cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end">
+                        <h3 class="text-white font-bold text-xl">Community</h3>
+                        <p class="text-white/80 text-sm">342 Local Opportunities</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-12 gap-8">
+            <div class="col-span-12 lg:col-span-8 space-y-8">
+                <h2 class="font-display text-2xl font-bold text-slate-900">Top Opportunities</h2>
+
+                <!-- Enhanced Opportunity Card -->
+                <div
+                    class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-all group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex gap-4">
+                            <div
+                                class="w-14 h-14 rounded-xl bg-gray-100 flex items-center justify-center text-2xl border border-gray-200">
+                                🌊</div>
+                            <div>
+                                <h3
+                                    class="font-bold text-lg text-slate-900 group-hover:text-brand-600 transition-colors">
+                                    Annual Coastal Cleanup</h3>
+                                <p class="text-slate-500 text-sm">Ocean Conservancy • San Francisco, CA</p>
+                            </div>
+                        </div>
+                        <div
+                            class="px-3 py-1 bg-green-50 text-green-700 text-xs font-bold rounded-full border border-green-200">
+                            Upcoming
+                        </div>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-4 leading-relaxed">Join us for our biggest event of the year! We
+                        need volunteers to help clear debris from Ocean Beach. All equipment will be provided, along
+                        with lunch and refreshments.</p>
+
+                    <div class="flex items-center gap-6 text-sm text-slate-500 mb-6">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            <span>Sat, Mar 12 • 9:00 AM</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                                </path>
+                            </svg>
+                            <span>42 Attending</span>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-3">
+                        <button
+                            class="flex-1 bg-black text-white py-2.5 rounded-xl font-medium hover:bg-slate-800 transition-colors">Sign
+                            Up</button>
+                        <button
+                            class="px-4 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-600 transition-colors">Save</button>
+                        <button
+                            class="px-4 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-600 transition-colors">Share</button>
+                    </div>
+                </div>
+
+                <!-- Opportunity Card 2 -->
+                <div
+                    class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-all group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex gap-4">
+                            <div
+                                class="w-14 h-14 rounded-xl bg-gray-100 flex items-center justify-center text-2xl border border-gray-200">
+                                💻</div>
+                            <div>
+                                <h3
+                                    class="font-bold text-lg text-slate-900 group-hover:text-brand-600 transition-colors">
+                                    Code for Good Hackathon</h3>
+                                <p class="text-slate-500 text-sm">TechNonProfit • Remote / Hybrid</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-4 leading-relaxed">We are building open-source tools for local
+                        food banks. Looking for developers, designers, and project managers to join teams for a weekend
+                        sprint.</p>
+
+                    <div class="flex items-center gap-6 text-sm text-slate-500 mb-6">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            <span>Apr 15 - 17</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                                </path>
+                            </svg>
+                            <span>156 Attending</span>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-3">
+                        <button
+                            class="flex-1 bg-black text-white py-2.5 rounded-xl font-medium hover:bg-slate-800 transition-colors">Sign
+                            Up</button>
+                        <button
+                            class="px-4 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-600 transition-colors">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-span-12 lg:col-span-4 space-y-8">
+                <!-- People to Follow -->
+                <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm">
+                    <h3 class="font-bold text-slate-900 mb-4">People You May Know</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0"><img
+                                    src="https://i.pravatar.cc/150?u=5" class="w-full h-full object-cover"></div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-sm">Emily Zhang</h4>
+                                <p class="text-xs text-slate-500">Volunteers at Red Cross</p>
+                            </div>
+                            <button class="text-brand-600 hover:bg-brand-50 p-2 rounded-full transition-colors"><svg
+                                    class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 4v16m8-8H4"></path>
+                                </svg></button>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0"><img
+                                    src="https://i.pravatar.cc/150?u=6" class="w-full h-full object-cover"></div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-sm">Marcus Johnson</h4>
+                                <p class="text-xs text-slate-500">Mutual Connection</p>
+                            </div>
+                            <button class="text-brand-600 hover:bg-brand-50 p-2 rounded-full transition-colors"><svg
+                                    class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 4v16m8-8H4"></path>
+                                </svg></button>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0"><img
+                                    src="https://i.pravatar.cc/150?u=7" class="w-full h-full object-cover"></div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-sm">Sarah Connor</h4>
+                                <p class="text-xs text-slate-500">Interested in Environment</p>
+                            </div>
+                            <button class="text-brand-600 hover:bg-brand-50 p-2 rounded-full transition-colors"><svg
+                                    class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 4v16m8-8H4"></path>
+                                </svg></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+
+</html>

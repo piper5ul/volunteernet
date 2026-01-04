@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Idol - Universal Search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', "Liberation Mono", "Courier New", 'monospace'],
+                    },
+                    colors: {
+                        linear: {
+                            50: '#f7f8f8',
+                            100: '#edeef0',
+                            200: '#d7dadf',
+                            300: '#b6bcc6',
+                            400: '#8e98a8',
+                            500: '#6c788e',
+                            600: '#545f73',
+                            700: '#454d5d',
+                            800: '#3a404c',
+                            900: '#323741',
+                            950: '#22252b',
+                        },
+                        peer: {
+                            green: '#00aa45',
+                        }
+                    },
+                    boxShadow: {
+                        'subtle': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+                        'floating': '0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+        }
+
+        .result-item:hover {
+            background-color: #f7f8f8;
+        }
+
+        .result-item.selected {
+            background-color: #f7f8f8;
+            box-shadow: inset 2px 0 0 #545f73;
+        }
+
+        .kbd {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #d7dadf;
+            border-radius: 4px;
+            color: #6c788e;
+            font-size: 10px;
+            font-weight: 500;
+            padding: 0 4px;
+            height: 18px;
+            min-width: 18px;
+            background: #fff;
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+
+<body class="bg-white text-linear-900 font-sans h-screen flex flex-col overflow-hidden">
+
+    <!-- Top Navigation -->
+    <header class="h-12 border-b border-linear-100 flex items-center px-4 shrink-0 bg-[#fbfbfc]">
+        <div class="flex items-center gap-3">
+            <div class="w-6 h-6 bg-peer-green rounded-md flex items-center justify-center text-white font-bold text-xs">
+                P</div>
+            <span class="font-semibold text-[13px] tracking-tight">Impact Idol</span>
+        </div>
+
+        <!-- Global Search Bar (Fake Input) -->
+        <div class="absolute left-1/2 -translate-x-1/2 w-[480px]">
+            <div class="relative group">
+                <svg class="absolute left-3 top-1.5 w-4 h-4 text-linear-400 group-hover:text-linear-600 transition-colors"
+                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input type="text" value="volunteer in san fran"
+                    class="w-full bg-linear-100/50 hover:bg-linear-100 focus:bg-white border border-transparent focus:border-linear-300 rounded-md py-1.5 pl-9 pr-12 text-[13px] text-linear-900 placeholder-linear-400 focus:outline-none transition-all shadow-subtle"
+                    autofocus>
+                <div class="absolute right-2 top-1.5 flex gap-1">
+                    <span class="kbd">⌘</span>
+                    <span class="kbd">/</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="ml-auto flex items-center gap-4">
+            <div class="w-6 h-6 rounded-full bg-linear-200 overflow-hidden"><img src="https://i.pravatar.cc/150?u=remix"
+                    class="w-full h-full object-cover"></div>
+        </div>
+    </header>
+
+    <main class="flex-1 flex overflow-hidden">
+
+        <!-- Left Sidebar (Filters) -->
+        <aside class="w-56 border-r border-linear-100 bg-[#fbfbfc] flex flex-col pt-4">
+            <div class="px-3 mb-2 text-[11px] font-medium text-linear-500 uppercase tracking-wider">Type</div>
+            <nav class="space-y-0.5 px-2 mb-6">
+                <a href="#"
+                    class="flex items-center gap-2 px-2 py-1.5 rounded-md bg-linear-100/50 text-[13px] font-medium text-linear-900">
+                    <svg class="w-4 h-4 text-linear-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+                        </path>
+                    </svg>
+                    Everything
+                </a>
+                <a href="#"
+                    class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-linear-50 text-[13px] text-linear-600 transition-colors">
+                    <svg class="w-4 h-4 text-linear-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    </svg>
+                    People
+                </a>
+                <a href="#"
+                    class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-linear-50 text-[13px] text-linear-600 transition-colors">
+                    <svg class="w-4 h-4 text-linear-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                        </path>
+                    </svg>
+                    Organizations
+                </a>
+                <a href="#"
+                    class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-linear-50 text-[13px] text-linear-600 transition-colors">
+                    <svg class="w-4 h-4 text-linear-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                    Opportunities
+                </a>
+            </nav>
+
+            <div class="px-3 mb-2 text-[11px] font-medium text-linear-500 uppercase tracking-wider">Filters</div>
+            <div class="px-3 space-y-3">
+                <div class="text-[12px] text-linear-600 border-b border-linear-100 pb-2">
+                    <span class="block mb-1.5 font-medium text-linear-900">Location</span>
+                    <div class="flex items-center justify-between text-linear-500 hover:text-linear-900 cursor-pointer">
+                        San Francisco <span class="text-[10px] text-linear-400">×</span>
+                    </div>
+                </div>
+                <div class="text-[12px] text-linear-600 border-b border-linear-100 pb-2">
+                    <span class="block mb-1.5 font-medium text-linear-900">Status</span>
+                    <div class="flex items-center gap-1.5 text-linear-500 hover:text-linear-900 cursor-pointer">
+                        <div class="w-2 h-2 rounded-full bg-peer-green"></div> Active
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Search Results List -->
+        <div class="flex-1 overflow-y-auto min-w-0 bg-white border-r border-linear-100">
+            <!-- Token Bar -->
+            <div class="h-10 border-b border-linear-100 flex items-center px-4 gap-2">
+                <span class="text-[11px] text-linear-400 uppercase tracking-wide mr-1">Query:</span>
+                <span
+                    class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] bg-linear-100 text-linear-700 border border-linear-200">
+                    "volunteer in san fran"
+                    <button class="ml-1 text-linear-400 hover:text-linear-600">×</button>
+                </span>
+                <span
+                    class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] bg-linear-50 text-linear-600 border border-linear-200 border-dashed">
+                    + Add Filter
+                </span>
+            </div>
+
+            <!-- Results -->
+            <div class="divide-y divide-linear-50">
+
+                <!-- Item 1 (Opportunity) -->
+                <div class="result-item selected p-4 cursor-pointer">
+                    <div class="flex justify-between items-start mb-1">
+                        <div class="flex items-center gap-2">
+                            <div class="p-1 rounded bg-linear-100 text-linear-500"><svg class="w-3.5 h-3.5" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                    </path>
+                                </svg></div>
+                            <span class="text-[13px] font-semibold text-linear-900">San Francisco Food Bank
+                                Driver</span>
+                        </div>
+                        <span class="text-[11px] text-linear-400">Opp</span>
+                    </div>
+                    <p class="text-[12px] text-linear-500 line-clamp-1 pl-7">Looking for drivers to deliver meals to
+                        elderly residents in the mission district.</p>
+                    <div class="pl-7 mt-2 flex items-center gap-3 text-[11px] text-linear-400">
+                        <span class="flex items-center gap-1 text-linear-600">
+                            <div class="w-3 h-3 rounded bg-red-500"></div> SF Food Bank
+                        </span>
+                        <span>•</span>
+                        <span>Mar 12</span>
+                        <span>•</span>
+                        <span class="bg-peer-green/10 text-peer-green px-1 rounded">Open</span>
+                    </div>
+                </div>
+
+                <!-- Item 2 (Org) -->
+                <div class="result-item p-4 cursor-pointer">
+                    <div class="flex justify-between items-start mb-1">
+                        <div class="flex items-center gap-2">
+                            <div class="p-1 rounded bg-linear-100 text-linear-500"><svg class="w-3.5 h-3.5" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                                    </path>
+                                </svg></div>
+                            <span class="text-[13px] font-medium text-linear-900">San Francisco SPCA</span>
+                        </div>
+                        <span class="text-[11px] text-linear-400">Org</span>
+                    </div>
+                    <p class="text-[12px] text-linear-500 line-clamp-1 pl-7">Animal shelter and veterinary hospital.</p>
+                    <div class="pl-7 mt-2 flex items-center gap-3 text-[11px] text-linear-400">
+                        <span>3.2k Followers</span>
+                        <span>•</span>
+                        <span>San Francisco, CA</span>
+                    </div>
+                </div>
+
+                <!-- Item 3 (Person) -->
+                <div class="result-item p-4 cursor-pointer">
+                    <div class="flex justify-between items-start mb-1">
+                        <div class="flex items-center gap-2">
+                            <img src="https://i.pravatar.cc/100?u=sarah" class="w-5.5 h-5.5 rounded-full bg-linear-200">
+                            <span class="text-[13px] font-medium text-linear-900">Sandra Francisco</span>
+                        </div>
+                        <span class="text-[11px] text-linear-400">Person</span>
+                    </div>
+                    <p class="text-[12px] text-linear-500 line-clamp-1 pl-7">Community organizer and event planner.</p>
+                    <div class="pl-7 mt-2 flex items-center gap-3 text-[11px] text-linear-400">
+                        <span>42 Connections</span>
+                        <span>•</span>
+                        <span>Mutual: Alex Rivera</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Right Preview Panel (Inspector) -->
+        <aside class="w-80 bg-[#fbfbfc] flex flex-col overflow-y-auto">
+            <!-- Preview Header -->
+            <div class="h-12 border-b border-linear-100 flex items-center px-4 justify-between shrink-0">
+                <div class="text-[10px] font-mono text-linear-400 uppercase">VOL-492</div>
+                <div class="flex gap-2">
+                    <button class="text-linear-400 hover:text-linear-700"><svg class="w-4 h-4" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg></button>
+                    <button class="text-linear-400 hover:text-linear-700"><svg class="w-4 h-4" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg></button>
+                </div>
+            </div>
+
+            <div class="p-6">
+                <div class="flex items-start gap-3 mb-4">
+                    <div
+                        class="w-10 h-10 rounded-md bg-red-100 flex items-center justify-center text-red-600 font-bold shrink-0">
+                        SF</div>
+                    <div>
+                        <h2 class="text-[14px] font-semibold text-linear-900 leading-snug">San Francisco Food Bank
+                            Driver</h2>
+                        <a href="#"
+                            class="text-[12px] text-linear-500 hover:text-linear-800 hover:underline mt-0.5 block">SF
+                            Food Bank</a>
+                    </div>
+                </div>
+
+                <div class="space-y-4 mb-6">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[12px] text-linear-500">Status</span>
+                        <span
+                            class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-linear-100 text-[11px] font-medium text-linear-700 border border-linear-200">
+                            <div class="w-1.5 h-1.5 rounded-full bg-peer-green"></div> Open
+                        </span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[12px] text-linear-500">Date</span>
+                        <span class="text-[12px] text-linear-900">Mar 12, 2026</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[12px] text-linear-500">Location</span>
+                        <span class="text-[12px] text-linear-900">Mission District</span>
+                    </div>
+                </div>
+
+                <div class="h-px bg-linear-100 mb-6"></div>
+
+                <h3 class="text-[12px] font-medium text-linear-900 mb-2">Description</h3>
+                <p class="text-[13px] text-linear-600 leading-relaxed mb-6">
+                    We need 5 volunteers to help distribute meals. You must have a valid driver's license and a vehicle.
+                    Shifts differ by route but generally last 2-3 hours.
+                </p>
+
+                <button
+                    class="w-full py-2 bg-linear-900 text-white text-[13px] font-medium rounded-md hover:bg-black shadow-subtle mb-3">Apply
+                    Now</button>
+                <button
+                    class="w-full py-2 bg-white text-linear-700 border border-linear-200 text-[13px] font-medium rounded-md hover:bg-linear-50 shadow-subtle">Save
+                    for Later</button>
+
+            </div>
+        </aside>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Idol - Organization Verification</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', "Liberation Mono", "Courier New", 'monospace'],
+                    },
+                    colors: {
+                        linear: {
+                            50: '#f7f8f8',
+                            100: '#edeef0',
+                            200: '#d7dadf',
+                            300: '#b6bcc6',
+                            400: '#8e98a8',
+                            500: '#6c788e',
+                            600: '#545f73',
+                            700: '#454d5d',
+                            800: '#3a404c',
+                            900: '#323741',
+                            950: '#22252b',
+                        },
+                        peer: {
+                            green: '#00aa45',
+                        }
+                    },
+                    boxShadow: {
+                        'subtle': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+        }
+
+        .row-hover:hover {
+            background-color: #f7f8f8;
+        }
+
+        .checkbox {
+            appearance: none;
+            background-color: #fff;
+            margin: 0;
+            font: inherit;
+            color: currentColor;
+            width: 14px;
+            height: 14px;
+            border: 1px solid #d7dadf;
+            border-radius: 3px;
+            display: grid;
+            place-content: center;
+        }
+
+        .checkbox::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em #00aa45;
+            transform-origin: center;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        }
+
+        .checkbox:checked::before {
+            transform: scale(1);
+        }
+
+        .checkbox:checked {
+            border-color: #00aa45;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-linear-900 font-sans h-screen flex flex-col overflow-hidden">
+
+    <!-- Top Navigation (Admin Context) -->
+    <header class="h-12 border-b border-linear-100 flex items-center px-4 shrink-0 bg-[#fbfbfc]">
+        <div class="flex items-center gap-3">
+            <div
+                class="w-6 h-6 rounded-md bg-linear-800 flex items-center justify-center text-white text-[10px] font-bold">
+                OC</div>
+            <span class="text-[13px] font-medium text-linear-900">Ocean Cleanup Org</span>
+            <span class="text-[13px] text-linear-400">/</span>
+            <span class="text-[13px] text-linear-600">Verification Queue</span>
+        </div>
+
+        <div class="ml-auto flex items-center gap-4">
+            <div class="flex items-center gap-1.5 text-[12px] text-linear-500 hover:text-linear-900 cursor-pointer">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                    </path>
+                </svg>
+                <span class="bg-linear-200 text-linear-700 px-1.5 rounded-full text-[10px]">12</span>
+            </div>
+            <div class="w-6 h-6 rounded-full bg-linear-200 overflow-hidden"><img src="https://i.pravatar.cc/150?u=admin"
+                    class="w-full h-full object-cover"></div>
+        </div>
+    </header>
+
+    <main class="flex-1 flex overflow-hidden">
+
+        <!-- Sidebar Filters -->
+        <aside class="w-56 border-r border-linear-100 bg-[#fbfbfc] flex flex-col pt-4">
+            <div
+                class="px-3 mb-2 flex justify-between items-center text-[11px] font-medium text-linear-500 uppercase tracking-wider">
+                Views
+                <button class="hover:bg-linear-100 p-1 rounded"><svg class="w-3 h-3" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg></button>
+            </div>
+
+            <nav class="space-y-0.5 px-2">
+                <a href="#"
+                    class="flex items-center gap-2 px-2 py-1.5 rounded-md bg-linear-100/50 text-[13px] font-medium text-linear-900">
+                    <svg class="w-4 h-4 text-peer-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Pending Verification
+                    <span class="ml-auto text-[11px] text-linear-500">24</span>
+                </a>
+                <a href="#"
+                    class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-linear-50 text-[13px] text-linear-600 transition-colors">
+                    <svg class="w-4 h-4 text-linear-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Flagged / Disputed
+                    <span class="ml-auto text-[11px] text-linear-500">3</span>
+                </a>
+                <a href="#"
+                    class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-linear-50 text-[13px] text-linear-600 transition-colors">
+                    <svg class="w-4 h-4 text-linear-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    Verified History
+                </a>
+            </nav>
+
+            <div class="mt-6 px-3 mb-2 text-[11px] font-medium text-linear-500 uppercase tracking-wider">Filters</div>
+            <div class="px-3 space-y-3">
+                <div class="text-[12px] text-linear-600">
+                    <span class="block mb-1 font-medium">Event</span>
+                    <select
+                        class="w-full bg-white border border-linear-200 rounded px-2 py-1 text-[12px] focus:outline-none focus:border-peer-green">
+                        <option>All Events</option>
+                        <option>Coastal Cleanup</option>
+                        <option>Food Drive</option>
+                    </select>
+                </div>
+                <div class="text-[12px] text-linear-600">
+                    <span class="block mb-1 font-medium">Date Range</span>
+                    <select
+                        class="w-full bg-white border border-linear-200 rounded px-2 py-1 text-[12px] focus:outline-none focus:border-peer-green">
+                        <option>Last 7 Days</option>
+                        <option>Last 30 Days</option>
+                        <option>Custom...</option>
+                    </select>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <div class="flex-1 flex flex-col min-w-0 bg-white">
+
+            <!-- Toolbar -->
+            <div class="h-10 border-b border-linear-100 flex items-center px-4 justify-between shrink-0">
+                <div class="flex items-center gap-2">
+                    <div class="flex items-center bg-linear-50 border border-linear-200 rounded px-2 py-1">
+                        <svg class="w-3.5 h-3.5 text-linear-400 mr-2" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                        <input type="text" placeholder="Filter by name..."
+                            class="bg-transparent text-[12px] focus:outline-none w-48 placeholder-linear-400">
+                    </div>
+                    <div class="h-4 w-px bg-linear-200 mx-1"></div>
+                    <span class="text-[12px] text-linear-500">24 records found</span>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <button
+                        class="text-[12px] font-medium text-linear-600 hover:text-linear-900 border border-linear-200 rounded px-2 py-1 hover:bg-linear-50">Export
+                        CSV</button>
+                    <button
+                        class="text-[12px] font-medium text-white bg-peer-green hover:bg-peer-hover rounded px-2 py-1 shadow-sm">Bulk
+                        Approve</button>
+                </div>
+            </div>
+
+            <!-- Dense Table -->
+            <div class="flex-1 overflow-auto">
+                <table class="w-full text-left text-[13px] border-collapse">
+                    <thead class="sticky top-0 bg-white z-10 box-shadow-subtle">
+                        <tr class="border-b border-linear-200 text-[11px] font-medium text-linear-500">
+                            <th class="w-10 px-4 py-2 text-center"><input type="checkbox" class="checkbox"></th>
+                            <th class="px-4 py-2 w-24">ID</th>
+                            <th class="px-4 py-2">Volunteer</th>
+                            <th class="px-4 py-2">Event</th>
+                            <th class="px-4 py-2">Date</th>
+                            <th class="px-4 py-2 text-right">Hours</th>
+                            <th class="px-4 py-2">Proof</th>
+                            <th class="px-4 py-2">Status</th>
+                            <th class="px-4 py-2 text-right w-40">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-linear-100">
+                        <!-- Row 1 -->
+                        <tr class="row-hover group transition-colors">
+                            <td class="px-4 py-2 text-center"><input type="checkbox" class="checkbox"></td>
+                            <td class="px-4 py-2 font-mono text-[11px] text-linear-400 select-all">#VR-1294</td>
+                            <td class="px-4 py-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-5 h-5 rounded-full bg-linear-200 overflow-hidden"><img
+                                            src="https://i.pravatar.cc/100?u=v1" class="w-full h-full"></div>
+                                    <span class="font-medium text-linear-900">Alex Rivera</span>
+                                </div>
+                            </td>
+                            <td class="px-4 py-2 text-linear-600"><span
+                                    class="bg-linear-50 border border-linear-200 px-1.5 py-0.5 rounded text-[11px]">Coastal
+                                    Cleanup</span></td>
+                            <td class="px-4 py-2 text-linear-500 text-[12px]">Mar 12, 2026</td>
+                            <td class="px-4 py-2 text-right font-mono text-linear-900">4.5</td>
+                            <td class="px-4 py-2">
+                                <div
+                                    class="flex items-center gap-1 text-[11px] text-blue-600 hover:underline cursor-pointer">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                        </path>
+                                    </svg>
+                                    View Photo
+                                </div>
+                            </td>
+                            <td class="px-4 py-2">
+                                <span
+                                    class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-yellow-50 text-yellow-700 border border-yellow-200">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-yellow-500 mr-1"></span> Pending
+                                </span>
+                            </td>
+                            <td class="px-4 py-2 text-right">
+                                <div
+                                    class="opacity-0 group-hover:opacity-100 transition-opacity flex justify-end gap-1">
+                                    <button
+                                        class="bg-white border border-linear-200 hover:border-linear-300 text-peer-green rounded px-2 py-1 text-[11px] font-medium shadow-sm">Approve</button>
+                                    <button
+                                        class="bg-white border border-linear-200 hover:border-linear-300 text-linear-500 hover:text-red-600 rounded px-2 py-1 text-[11px] font-medium shadow-sm">Reject</button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 2 -->
+                        <tr class="row-hover group transition-colors">
+                            <td class="px-4 py-2 text-center"><input type="checkbox" class="checkbox"></td>
+                            <td class="px-4 py-2 font-mono text-[11px] text-linear-400 select-all">#VR-1293</td>
+                            <td class="px-4 py-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-5 h-5 rounded-full bg-linear-200 overflow-hidden"><img
+                                            src="https://i.pravatar.cc/100?u=v2" class="w-full h-full"></div>
+                                    <span class="font-medium text-linear-900">Sarah Jenkins</span>
+                                </div>
+                            </td>
+                            <td class="px-4 py-2 text-linear-600"><span
+                                    class="bg-linear-50 border border-linear-200 px-1.5 py-0.5 rounded text-[11px]">Coastal
+                                    Cleanup</span></td>
+                            <td class="px-4 py-2 text-linear-500 text-[12px]">Mar 12, 2026</td>
+                            <td class="px-4 py-2 text-right font-mono text-linear-900">4.0</td>
+                            <td class="px-4 py-2">
+                                <div
+                                    class="flex items-center gap-1 text-[11px] text-blue-600 hover:underline cursor-pointer">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                        </path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                    Location
+                                </div>
+                            </td>
+                            <td class="px-4 py-2">
+                                <span
+                                    class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-red-50 text-red-700 border border-red-200">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-500 mr-1"></span> Flagged
+                                </span>
+                            </td>
+                            <td class="px-4 py-2 text-right">
+                                <div
+                                    class="opacity-0 group-hover:opacity-100 transition-opacity flex justify-end gap-1">
+                                    <button
+                                        class="bg-white border border-linear-200 hover:border-linear-300 text-linear-700 rounded px-2 py-1 text-[11px] font-medium shadow-sm">Review</button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 3 -->
+                        <tr class="row-hover group transition-colors">
+                            <td class="px-4 py-2 text-center"><input type="checkbox" class="checkbox"></td>
+                            <td class="px-4 py-2 font-mono text-[11px] text-linear-400 select-all">#VR-1292</td>
+                            <td class="px-4 py-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-5 h-5 rounded-full bg-linear-200 overflow-hidden"><img
+                                            src="https://i.pravatar.cc/100?u=v3" class="w-full h-full"></div>
+                                    <span class="font-medium text-linear-900">Emily Zhang</span>
+                                </div>
+                            </td>
+                            <td class="px-4 py-2 text-linear-600"><span
+                                    class="bg-linear-50 border border-linear-200 px-1.5 py-0.5 rounded text-[11px]">Food
+                                    Drive</span></td>
+                            <td class="px-4 py-2 text-linear-500 text-[12px]">Mar 11, 2026</td>
+                            <td class="px-4 py-2 text-right font-mono text-linear-900">2.5</td>
+                            <td class="px-4 py-2">
+                                <span class="text-[11px] text-linear-400">Scan</span>
+                            </td>
+                            <td class="px-4 py-2">
+                                <span
+                                    class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-green-50 text-green-700 border border-green-200">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1"></span> Verified
+                                </span>
+                            </td>
+                            <td class="px-4 py-2 text-right">
+                                <div
+                                    class="opacity-0 group-hover:opacity-100 transition-opacity flex justify-end gap-1">
+                                    <button class="text-linear-400 hover:text-linear-900 p-1"><svg class="w-4 h-4"
+                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
+                                            </path>
+                                        </svg></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Footer Pagination -->
+            <div class="h-9 border-t border-linear-100 flex items-center justify-between px-4 bg-linear-50/50 shrink-0">
+                <span class="text-[11px] text-linear-500">Showing 1-24 of 24</span>
+                <div class="flex gap-1">
+                    <button class="p-1 text-linear-400 hover:text-linear-700 rounded"><svg class="w-3 h-3" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                            </path>
+                        </svg></button>
+                    <button class="p-1 text-linear-400 hover:text-linear-700 rounded"><svg class="w-3 h-3" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg></button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Idol - Layout Concepts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            900: '#14532d',
+                        },
+                        peer: {
+                            bg: '#ffffff',
+                            text: '#0f172a',
+                            accent: '#00aa45',
+                            border: '#e2e8f0'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Utilities */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .gradient-mesh {
+            background-color: #0f172a;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+        }
+        .phone-frame {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 8px solid #333;
+            border-radius: 40px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen font-sans text-gray-900">
+
+    <!-- Switcher -->
+    <div class="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-white/90 backdrop-blur shadow-lg rounded-full p-1 flex gap-1 border border-gray-200">
+        <button onclick="switchView('visual')" class="px-4 py-2 rounded-full text-sm font-medium transition-colors hover:bg-gray-100" id="btn-visual">Concept 1: Immersive</button>
+        <button onclick="switchView('minimal')" class="px-4 py-2 rounded-full text-sm font-medium transition-colors hover:bg-gray-100" id="btn-minimal">Concept 2: Clean Pro</button>
+        <button onclick="switchView('glass')" class="px-4 py-2 rounded-full text-sm font-medium transition-colors hover:bg-gray-100" id="btn-glass">Concept 3: Glass UI</button>
+    </div>
+
+    <!-- VIEW 1: Immersive / Visual (Instagram-inspired) -->
+    <div id="view-visual" class="view-section w-full min-h-screen flex items-center justify-center py-20 bg-black">
+        <div class="phone-frame w-[375px] h-[812px] bg-black text-white relative flex flex-col">
+            <!-- Header -->
+            <div class="pt-12 px-4 pb-4 flex justify-between items-center bg-black/80 backdrop-blur sticky top-0 z-10">
+                <h1 class="font-display font-bold text-2xl tracking-tight">Impact Idol</h1>
+                <div class="flex gap-4">
+                    <button class="text-white"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg></button>
+                    <button class="text-white"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg></button>
+                </div>
+            </div>
+
+            <!-- Scrollable Content -->
+            <div class="flex-1 overflow-y-auto no-scrollbar">
+                <!-- Stories -->
+                <div class="flex gap-4 px-4 pb-6 overflow-x-auto hide-scrollbar">
+                    <div class="flex flex-col items-center gap-1 min-w-[72px]">
+                        <div class="w-16 h-16 rounded-full p-[2px] bg-gradient-to-tr from-yellow-400 to-pink-600">
+                            <div class="w-full h-full rounded-full bg-black border-2 border-black overflow-hidden">
+                                <img src="https://i.pravatar.cc/150?u=1" alt="Me" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <span class="text-xs">Your Story</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-1 min-w-[72px]">
+                        <div class="w-16 h-16 rounded-full p-[2px] bg-gradient-to-tr from-yellow-400 to-pink-600">
+                            <div class="w-full h-full rounded-full bg-gray-800 border-2 border-black overflow-hidden">
+                                <img src="https://i.pravatar.cc/150?u=2" alt="Red Cross" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <span class="text-xs">Red Cross</span>
+                    </div>
+                     <div class="flex flex-col items-center gap-1 min-w-[72px]">
+                        <div class="w-16 h-16 rounded-full p-[2px] border-2 border-gray-700">
+                             <div class="w-full h-full rounded-full bg-gray-800 border-2 border-black overflow-hidden">
+                                <img src="https://i.pravatar.cc/150?u=3" alt="Shelter" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <span class="text-xs">City Shelter</span>
+                    </div>
+                </div>
+
+                <!-- Feed Item 1 -->
+                <div class="pb-8 border-b border-gray-800">
+                    <div class="px-4 py-2 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                             <img src="https://i.pravatar.cc/150?u=4" class="w-8 h-8 rounded-full">
+                             <div>
+                                 <p class="text-sm font-semibold">Sarah Jenkins</p>
+                                 <p class="text-xs text-gray-400">San Francisco • Volunteer</p>
+                             </div>
+                        </div>
+                        <button class="text-gray-400">•••</button>
+                    </div>
+                    <!-- Image -->
+                    <div class="w-full aspect-[4/5] bg-gray-800 relative">
+                        <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover">
+                        <div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur px-3 py-1 rounded-full flex items-center gap-2">
+                            <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                            <span class="text-xs font-medium">Checked in at Golden Gate Park</span>
+                        </div>
+                    </div>
+                    <!-- Actions -->
+                    <div class="px-4 py-3">
+                        <div class="flex justify-between items-center mb-2">
+                            <div class="flex gap-4">
+                                <button><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg></button>
+                                <button><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 8 9 8z"></path></svg></button>
+                                <button><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg></button>
+                            </div>
+                            <button><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path></svg></button>
+                        </div>
+                        <p class="text-sm"><span class="font-semibold">alex_m</span> and <span class="font-semibold">42 others</span> liked this</p>
+                        <p class="text-sm mt-1"><span class="font-semibold">Sarah Jenkins</span> Amazing day cleaning up the coast with <span class="text-blue-400">@OceanCleanup</span>! We collected over 500lbs of trash today. 🌊♻️</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Nav -->
+             <div class="h-20 bg-black border-t border-gray-800 flex justify-around items-center px-2 pb-4">
+                <button class="p-2"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg></button>
+                <button class="p-2 text-gray-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
+                <button class="p-2"><div class="w-10 h-10 bg-gradient-to-r from-pink-500 to-violet-500 rounded-xl flex items-center justify-center text-xl shadow-lg border-2 border-black">+</div></button>
+                <button class="p-2 text-gray-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg></button>
+                 <div class="w-6 h-6 rounded-full overflow-hidden border border-gray-600"><img src="https://i.pravatar.cc/150?u=1"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- VIEW 2: Minimalist / Pro (Peerlist-inspired) -->
+    <div id="view-minimal" class="view-section hidden w-full min-h-screen bg-white">
+        <!-- Top Nav -->
+        <nav class="h-14 border-b border-gray-100 flex items-center justify-between px-6 sticky top-0 bg-white/80 backdrop-blur z-20">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-black rounded-lg flex items-center justify-center text-white font-bold font-serif italic">I</div>
+                <span class="font-bold text-lg tracking-tight">Impact Idol</span>
+            </div>
+            <div class="flex items-center gap-6 text-sm font-medium text-gray-500">
+                <a href="#" class="text-black">Feed</a>
+                <a href="#" class="hover:text-black">My Network</a>
+                <a href="#" class="hover:text-black">Opportunities</a>
+                <a href="#" class="hover:text-black">Jobs</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-50"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
+                 <div class="w-8 h-8 rounded-full bg-gray-200 overflow-hidden"><img src="https://i.pravatar.cc/150?u=1"></div>
+            </div>
+        </nav>
+
+        <main class="max-w-5xl mx-auto pt-8 px-4 grid grid-cols-12 gap-8">
+            <!-- Left Sidebar -->
+            <aside class="col-span-3">
+                <div class="sticky top-24">
+                   <div class="mb-8">
+                       <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">You</h3>
+                       <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-full overflow-hidden"><img src="https://i.pravatar.cc/150?u=1"></div>
+                            <div>
+                                <h2 class="font-bold text-gray-900 leading-tight">Alex Rivera</h2>
+                                <p class="text-xs text-gray-500">Software Engineer @ TechForGood</p>
+                            </div>
+                       </div>
+                       <div class="flex gap-4 text-xs">
+                           <div><span class="font-bold text-gray-900">342</span> <span class="text-gray-500">Connections</span></div>
+                           <div><span class="font-bold text-gray-900">58</span> <span class="text-gray-500">Hours</span></div>
+                       </div>
+                   </div>
+
+                   <nav class="space-y-1">
+                       <a href="#" class="block px-3 py-2 rounded-md bg-green-50 text-green-700 font-medium text-sm">Home</a>
+                       <a href="#" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 font-medium text-sm">Notifications</a>
+                       <a href="#" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 font-medium text-sm">Upcoming Events</a>
+                       <a href="#" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 font-medium text-sm">Bookmarks</a>
+                   </nav>
+                </div>
+            </aside>
+
+            <!-- Main Feed -->
+            <section class="col-span-6 space-y-8 pb-20">
+                <!-- Composer -->
+                <div class="border border-gray-100 rounded-xl p-4 shadow-sm">
+                    <div class="flex gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-100 overflow-hidden flex-shrink-0"><img src="https://i.pravatar.cc/150?u=1"></div>
+                        <input type="text" placeholder="Share your volunteer experience..." class="w-full bg-transparent outline-none text-sm pt-2">
+                    </div>
+                    <div class="flex justify-between items-center mt-4 pl-12">
+                        <div class="flex gap-2 text-gray-400">
+                             <button class="hover:text-green-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></button>
+                             <button class="hover:text-green-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></button>
+                        </div>
+                        <button class="bg-black text-white px-4 py-1.5 rounded-lg text-sm font-semibold hover:bg-gray-800">Post</button>
+                    </div>
+                </div>
+
+                <!-- Post 1 -->
+                <article class="flex gap-4">
+                     <div class="w-12 h-12 rounded-full bg-gray-100 flex-shrink-0 overflow-hidden"><img src="https://i.pravatar.cc/150?u=4"></div>
+                     <div class="flex-1">
+                         <div class="flex items-baseline justify-between">
+                             <h4 class="font-bold text-gray-900">Sarah Jenkins <span class="text-gray-400 font-normal text-sm ml-1">@sjenkins • 2h</span></h4>
+                         </div>
+                         <p class="text-gray-800 mt-1 mb-3 text-sm leading-relaxed">Just finished a 4-hour shift at the <span class="font-semibold text-green-700">@CityFoodBank</span>. We packed over 200 boxes for families in need! It's incredible to see the community come together like this. If anyone wants to join next Saturday, let me know!</p>
+                         
+                         <!-- Rich attachment -->
+                         <div class="border border-gray-200 rounded-lg p-3 flex gap-4 mb-3 hover:bg-gray-50 cursor-pointer transition-colors">
+                             <div class="w-16 h-16 bg-gray-200 rounded-md overflow-hidden bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1593113598332-cd288d649433?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80')"></div>
+                             <div class="flex flex-col justify-center">
+                                 <h5 class="font-bold text-sm">Saturday Morning Sort</h5>
+                                 <p class="text-xs text-gray-500">Volunteer Event • City Food Bank</p>
+                                 <p class="text-xs text-green-600 font-medium mt-1">4 Spots Left</p>
+                             </div>
+                         </div>
+
+                         <div class="flex gap-6 text-gray-400 text-sm">
+                             <button class="flex items-center gap-1 hover:text-red-500"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg> 24</button>
+                             <button class="flex items-center gap-1 hover:text-blue-500"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 8 9 8z"></path></svg> 5</button>
+                             <button class="flex items-center gap-1 hover:text-gray-900"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg> Share</button>
+                         </div>
+                     </div>
+                </article>
+
+            </section>
+
+             <!-- Right Sidebar -->
+            <aside class="col-span-3">
+                 <div class="sticky top-24 border border-gray-100 rounded-xl p-4">
+                     <h3 class="font-bold text-sm mb-4">Suggested for you</h3>
+                     <div class="space-y-4">
+                         <div class="flex items-center gap-3">
+                              <div class="w-10 h-10 rounded-full bg-gray-100 overflow-hidden"><img src="https://i.pravatar.cc/150?u=8"></div>
+                              <div class="flex-1 min-w-0">
+                                  <p class="text-sm font-semibold truncate">David Chen</p>
+                                  <p class="text-xs text-gray-500 truncate">Environmental Activist</p>
+                              </div>
+                              <button class="text-green-600 hover:bg-green-50 p-1.5 rounded-full"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></button>
+                         </div>
+                         <div class="flex items-center gap-3">
+                              <div class="w-10 h-10 rounded-full bg-gray-100 overflow-hidden"><img src="https://i.pravatar.cc/150?u=9"></div>
+                              <div class="flex-1 min-w-0">
+                                  <p class="text-sm font-semibold truncate">Maria Rodriguez</p>
+                                  <p class="text-xs text-gray-500 truncate">Education Mentor</p>
+                              </div>
+                               <button class="text-green-600 hover:bg-green-50 p-1.5 rounded-full"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></button>
+                         </div>
+                     </div>
+                 </div>
+            </aside>
+        </main>
+    </div>
+
+    <!-- VIEW 3: Glass / Future (More Modern) -->
+    <div id="view-glass" class="view-section hidden w-full min-h-screen gradient-mesh text-white p-6 flex flex-col items-center">
+        <!-- Floating Dock Nav -->
+        <div class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-xl border border-white/20 px-6 py-3 rounded-2xl flex gap-8 shadow-2xl z-40">
+            <button class="hover:scale-110 transition-transform"><svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg></button>
+            <button class="hover:scale-110 transition-transform"><svg class="w-6 h-6 text-white/70 hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
+            <button class="hover:scale-110 transition-transform bg-blue-500/80 rounded-xl p-1 shadow-lg shadow-blue-500/50"><svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></button>
+            <button class="hover:scale-110 transition-transform"><svg class="w-6 h-6 text-white/70 hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg></button>
+            <button class="hover:scale-110 transition-transform"><div class="w-6 h-6 rounded-full overflow-hidden border border-white/50"><img src="https://i.pravatar.cc/150?u=1"></div></button>
+        </div>
+
+        <!-- Main Glass Grid -->
+        <main class="w-full max-w-6xl grid grid-cols-12 gap-6 pt-10">
+            <!-- Sidebar Card -->
+            <div class="col-span-3 h-fit glass-panel rounded-3xl p-6">
+                <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 rounded-full border-4 border-white/10 shadow-xl overflow-hidden mb-4">
+                        <img src="https://i.pravatar.cc/150?u=1" class="w-full h-full object-cover">
+                    </div>
+                    <h2 class="text-xl font-bold">Alex Rivera</h2>
+                    <p class="text-white/60 text-sm">Level 5 Volunteer</p>
+                    
+                    <div class="mt-6 w-full space-y-3">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-white/60">Impact</span>
+                            <span class="font-bold">Very High</span>
+                        </div>
+                        <div class="w-full bg-white/10 rounded-full h-1.5 overflow-hidden">
+                            <div class="bg-gradient-to-r from-blue-400 to-purple-500 h-full w-[80%]"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feed -->
+            <div class="col-span-6 space-y-6 pb-24">
+                <div class="glass-panel rounded-3xl p-5 hover:bg-white/15 transition-colors cursor-pointer group">
+                    <div class="flex justify-between items-start mb-4">
+                         <div class="flex gap-3 items-center">
+                            <img src="https://i.pravatar.cc/150?u=10" class="w-10 h-10 rounded-full border border-white/20">
+                            <div>
+                                <h3 class="font-semibold">Volunteer Match</h3>
+                                <p class="text-white/50 text-xs">Recommended for you</p>
+                            </div>
+                         </div>
+                         <span class="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full border border-blue-500/50">Event</span>
+                    </div>
+                    <h3 class="text-2xl font-display font-medium mb-2 leading-tight">Beach Cleanup Drive 2026</h3>
+                    <p class="text-white/80 text-sm font-light mb-4">Join 50+ volunteers in our annual effort to keep our coastlines pristine. Snacks and gear provided!</p>
+                    <div class="h-48 rounded-xl overflow-hidden relative mb-4">
+                         <img src="https://images.unsplash.com/photo-1618477461853-5f8dd129161d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="flex gap-4">
+                        <button class="flex-1 bg-white text-black py-2 rounded-xl font-medium hover:bg-gray-200 transition-colors">Register</button>
+                        <button class="w-12 h-10 flex items-center justify-center rounded-xl border border-white/20 hover:bg-white/10"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path></svg></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="col-span-3 space-y-6">
+                <div class="glass-panel rounded-3xl p-6">
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-white/50 mb-4">Live Activity</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_10px_rgba(74,222,128,0.5)]"></div>
+                            <span class="text-sm">Sarah J. joined <span class="text-white/60">Tree Planting</span></span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 rounded-full bg-purple-400"></div>
+                            <span class="text-sm">Mike R. posted a photo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function switchView(viewName) {
+            // Hide all
+            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('button[id^="btn-"]').forEach(btn => {
+                btn.classList.remove('bg-black', 'text-white');
+                btn.classList.add('hover:bg-gray-100');
+            });
+
+            // Show selected
+            document.getElementById('view-' + viewName).classList.remove('hidden');
+            
+            // Highlight button
+            const btn = document.getElementById('btn-' + viewName);
+            btn.classList.remove('hover:bg-gray-100');
+            btn.classList.add('bg-black', 'text-white');
+        }
+
+        // Init
+        switchView('visual');
+    </script>
+</body>
+</html>
